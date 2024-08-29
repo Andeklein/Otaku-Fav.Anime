@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Otaku Fav. - Anime</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="exploreAnimeFragment">Explore Anime</string>
+    <string name="detailAnimeFragment">Detail Anime</string>
+
 </resources>
