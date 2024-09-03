@@ -1,4 +1,4 @@
-package com.andre.otakufav_anime.ui.explore_anime
+package com.andre.otakufav_anime.ui.web_view
 import android.os.Bundle
 import android.webkit.WebSettings
 import android.webkit.WebView

@@ -16,7 +16,7 @@
         tools:layout="@layout/fragment_detail_anime" />
     <activity
         android:id="@+id/youTubeWebViewActivity"
-        android:name="com.andre.otakufav_anime.ui.explore_anime.YouTubeWebViewActivity"
+        android:name="com.andre.otakufav_anime.ui.web_view.YouTubeWebViewActivity"
         android:label="fragment_web__view_"
         tools:layout="@layout/fragment_web__view_" />
 </navigation>
