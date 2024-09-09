@@ -96,7 +96,7 @@
     <Spinner
         android:id="@+id/spinner_explore"
         android:layout_width="189dp"
-        android:layout_height="22dp"
+        android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/tv_title"
         app:layout_constraintEnd_toStartOf="@+id/iv_info"
         app:layout_constraintStart_toEndOf="@+id/iv_popcorn"
