@@ -30,10 +30,10 @@ class AnimeAdapter(
     override fun getItemCount(): Int = animeList.size
 
     class AnimeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val animeImage: ImageView = itemView.findViewById(R.id.iv_anime)
+        private val animeImage: ImageView = itemView.findViewById(R.id.iv_charakter)
         private val animeTitle: TextView = itemView.findViewById(R.id.tv_title)
-        private val likeButton: ImageButton = itemView.findViewById(R.id.ivHeartIcon)
-        private val trashButton: ImageButton = itemView.findViewById(R.id.iv_trash)
+        private val likeButton: ImageButton = itemView.findViewById(R.id.ivHeartIcon_charakter)
+        private val trashButton: ImageButton = itemView.findViewById(R.id.iv_trash_charakter)
         private val spinner: View = itemView.findViewById(R.id.spinner)
 
         fun bind(anime: Anime, onLikeClick: (Anime) -> Unit, onDeleteClick: (Anime) -> Unit) {

@@ -22,4 +22,14 @@ private val retrofit = Retrofit.Builder()
 interface AnimeApiService {
     @GET("animes")
     suspend fun getAnimes(): List<Anime>
+
+    @GET("characters")
+    suspend fun getCharacters(): List<Character>
+
+    companion object {
+        fun create(): AnimeApiService {
+            return retrofit.create(AnimeApiService::class.java)
+        }
+    }
+
 }
