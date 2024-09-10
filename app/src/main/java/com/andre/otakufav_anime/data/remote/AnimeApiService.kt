@@ -1,5 +1,6 @@
 package com.andre.otakufav_anime.data.remote
 
+import androidx.lifecycle.LiveData
 import com.example.animeapp.data.model.Anime
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
@@ -21,10 +22,10 @@ private val retrofit = Retrofit.Builder()
 
 interface AnimeApiService {
     @GET("animes")
-    suspend fun getAnimes(): List<Anime>
+    suspend fun getAnimes(): LiveData<List<Anime>>
 
     @GET("characters")
-    suspend fun getCharacters(): List<Character>
+    suspend fun getCharacters(): LiveData<List<Character>>
 
     companion object {
         fun create(): AnimeApiService {

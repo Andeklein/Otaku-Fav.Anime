@@ -1,5 +1,6 @@
 package com.andre.otakufav_anime.data
 
+import androidx.lifecycle.LiveData
 import com.andre.otakufav_anime.data.local.AnimeDao
 import com.andre.otakufav_anime.data.remote.AnimeApiService
 import com.example.animeapp.data.model.Anime
@@ -9,7 +10,7 @@ class AnimeRepository(
     private val apiService: AnimeApiService
     ) {
         // Holt Animes von der API
-        suspend fun fetchAnimesFromApi(): List<Anime> {
+        suspend fun fetchAnimesFromApi(): LiveData<List<Anime>> {
             return apiService.getAnimes()
         }
 
