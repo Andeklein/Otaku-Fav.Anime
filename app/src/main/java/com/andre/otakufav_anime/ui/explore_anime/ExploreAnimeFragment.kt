@@ -1,11 +1,14 @@
 package com.andre.otakufav_anime.ui.explore_anime
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.fragment.app.activityViewModels
+import com.andre.otakufav_anime.MainViewModel
 import com.andre.otakufav_anime.R
 import com.andre.otakufav_anime.data.remote.AnimeApiService
 import com.andre.otakufav_anime.databinding.FragmentExploreAnimeBinding
@@ -14,8 +17,8 @@ import com.example.animeapp.ui.exploreanime.AnimeAdapter
 class ExploreAnimeFragment : Fragment() {
 
     private lateinit var binding: FragmentExploreAnimeBinding
-    private lateinit var animeAdapter: AnimeAdapter
-    private lateinit var animeApiService: AnimeApiService
+    private val viewModel: MainViewModel by activityViewModels()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,44 +35,28 @@ class ExploreAnimeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setUpRecyclerView()
+        viewModel.anime.observe(viewLifecycleOwner) {
+            Log.d("Anime","observe: $it")
+        }
+
         setUpSpinner()
-        loadAnimesFromApi()
     }
 
-    private fun setUpRecyclerView() {
+    private fun setUpSpinner() {
 
-        animeAdapter = AnimeAdapter(onLikeClick = { anime ->
-            addAnimeToFavorites(anime) {
+        val filterData = mutableListOf(
+            "Anime",
+            "Charakter"
+        )
 
-            }
+        binding.spinnerExplore.adapter = ArrayAdapter(
+            requireActivity(),
+            android.R.layout.simple_spinner_dropdown_item,
+            filterData
+        )
 
-
-        }
-
-
-                private fun setUpSpinner() {
-
-            val filterData = mutableListOf(
-                "Anime",
-                "Charakter"
-            )
-
-            binding.spinnerExplore.adapter = ArrayAdapter(
-                requireActivity(),
-                android.R.layout.simple_spinner_dropdown_item,
-                filterData
-            )
-
-            binding.spinnerExplore.onItemSelectedListener
-
-        }
-
-
-                private fun loadAnimesFromApi() {
-            animeApiService.getAnimeList()
-
-        }
+        binding.spinnerExplore.onItemSelectedListener
 
     }
+
 }

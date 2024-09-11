@@ -54,17 +54,20 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     // In your build.gradle (Module: app) file
-        // Retrofit for making network requests
-        implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    // Retrofit for making network requests
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
 
-        // Moshi for JSON parsing
-        implementation ("com.squareup.moshi:moshi:1.15.0")
-        implementation ("com.squareup.moshi:moshi-kotlin:1.15.0")
+    // Moshi for JSON parsing
+    implementation("com.squareup.moshi:moshi:1.15.0")
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.0")
 
-        // Moshi Converter for Retrofit
-        implementation ("com.squareup.retrofit2:converter-moshi:2.9.0")
+    // Moshi Converter for Retrofit
+    implementation("com.squareup.retrofit2:converter-moshi:2.9.0")
 
-        // Coil for image loading
-        implementation ("io.coil-kt:coil:2.3.0")
-        implementation ("io.coil-kt:coil-base:2.3.0")
-    }
+    // Coil for image loading
+    implementation("io.coil-kt:coil:2.3.0")
+    implementation("io.coil-kt:coil-base:2.3.0")
+
+    // Logging interceptor for debugging
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
+}

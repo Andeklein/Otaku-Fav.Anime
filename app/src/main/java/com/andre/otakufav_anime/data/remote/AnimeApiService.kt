@@ -4,33 +4,30 @@ import androidx.lifecycle.LiveData
 import com.example.animeapp.data.model.Anime
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.GET
 
+object AnimeAPI {
+    private const val BASE_URL = "https://0.0.0.0:8080/"
+    private val logger = HttpLoggingInterceptor().apply { level = HttpLoggingInterceptor.Level.BODY }
+    private val client = OkHttpClient.Builder().addInterceptor(logger).build()
+    private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
+    private val converter = MoshiConverterFactory.create(moshi)
 
-const val BASE_URL = "http://0.0.0.0:8080/anime"
-
-private val moshi = Moshi.Builder()
-    .add(KotlinJsonAdapterFactory())
-    .build()
-
-private val retrofit = Retrofit.Builder()
-    .baseUrl(BASE_URL)
-    .addConverterFactory(MoshiConverterFactory.create(moshi))
-    .build()
+    val service: AnimeApiService by lazy {
+        Retrofit.Builder()
+            .addConverterFactory(converter)
+            .baseUrl(BASE_URL)
+            .client(client)
+            .build()
+            .create(AnimeApiService::class.java)
+    }
+}
 
 interface AnimeApiService {
-    @GET("animes")
-    suspend fun getAnimes(): LiveData<List<Anime>>
-
-    @GET("characters")
-    suspend fun getCharacters(): LiveData<List<Character>>
-
-    companion object {
-        fun create(): AnimeApiService {
-            return retrofit.create(AnimeApiService::class.java)
-        }
-    }
-
+    @GET("anime")
+    suspend fun getAnime(): List<Anime>
 }

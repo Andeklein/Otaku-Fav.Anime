@@ -94,7 +94,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Spinner
-        android:id="@+id/spinner_explore_charkter"
+        android:id="@+id/spinner_explore"
         android:layout_width="189dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/tv_title"

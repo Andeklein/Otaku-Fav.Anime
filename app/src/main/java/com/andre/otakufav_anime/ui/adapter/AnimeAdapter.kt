@@ -39,6 +39,8 @@ class AnimeAdapter(
         private val animeTitle: TextView = itemView.findViewById(R.id.tv_title)
         private val likeButton: ImageButton = itemView.findViewById(R.id.ivHeartIcon_charakter)
         private val trashButton: ImageButton = itemView.findViewById(R.id.iv_trash_charakter)
+        private val animeInfo: TextView = itemView.findViewById(R.id.tv_anime_info)
+        private val animeGenre: TextView = itemView.findViewById(R.id.tvAnimeGenre)
         private val spinner: View = itemView.findViewById(R.id.spinner)
 
         fun bind(anime: Anime) {
