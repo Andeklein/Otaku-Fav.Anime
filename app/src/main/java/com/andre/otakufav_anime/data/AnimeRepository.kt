@@ -6,6 +6,7 @@ import com.andre.otakufav_anime.data.local.AnimeDatabase
 import com.andre.otakufav_anime.data.remote.AnimeAPIService
 import com.andre.otakufav_anime.data.remote.AnimeApi
 import com.andre.otakufav_anime.data.remote.AnimeApiResponse
+import com.example.animeapp.data.model.Anime
 import org.lighthousegames.logging.logging
 
 class AnimeRepository(
@@ -27,20 +28,22 @@ class AnimeRepository(
 
     }
 
-    suspend fun saveAnimeToDatabase() {
+  /*  suspend fun saveAnimeToDatabase() {
 
         try {
             val responseVersion = getApiVersion()
             val responseAnime = fetchAnimeFromApi()
 
             if (responseVersion == 1.0){
-
+                responseAnime.forEach { anime ->
+                    animeDao.insertAnime()
+                }
             }
             logging().info { " fetching anime: ${responseAnime.size}" }
         } catch (e: Exception) {
             logging().info { "Error fetching anime: ${e.message}" }
         }
-    }
+    } */
 
 }
 

@@ -1,11 +1,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
+        android:id="@+id/aniGenresFragment"
+        android:title="Genres" />
+    <item
         android:id="@+id/exploreAnimeFragment"
-        android:icon="@drawable/ic_explore"
-        android:title="" />
+        android:title="Explore" />
 
     <item
         android:id="@id/favoriteFragment"
-        android:icon="@drawable/ic_action_name"
-        android:title="" />
+        android:title="Fav" />
 </menu>

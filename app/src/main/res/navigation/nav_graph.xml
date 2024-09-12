@@ -34,4 +34,18 @@
         android:name="com.andre.otakufav_anime.ui.favorites.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/aniGenresFragment"
+        android:name="com.andre.otakufav_anime.ui.genre.AniGenresFragment"
+        android:label="AGenresFragment"
+        tools:layout="@layout/fragment_ani_genres"/>
+    <fragment
+        android:id="@+id/exploreCharakterFragment"
+        android:name="com.andre.otakufav_anime.ui.explore_charakter.ExploreCharakterFragment"
+        android:label="ExploreCharakterFragment" />
+    <fragment
+        android:id="@+id/detailExploreCharakterFragment"
+        android:name="com.andre.otakufav_anime.ui.detail.DetailExploreCharakterFragment"
+        android:label="fragment_detail_explore_charakter"
+        tools:layout="@layout/fragment_detail_explore_charakter" />
 </navigation>
