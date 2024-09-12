@@ -7,8 +7,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.andre.otakufav_anime.data.AnimeRepository
-import com.example.animeapp.data.model.Anime
+import com.andre.otakufav_anime.data.remote.Anime
 import kotlinx.coroutines.launch
+import org.lighthousegames.logging.logging
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
@@ -23,7 +24,8 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         get() = _anime
 
     init {
-
+        getApiVersion()
+        fetchAnime()
     }
 
     fun getApiVersion(){
@@ -34,4 +36,16 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         }
 
     }
+    fun fetchAnime(){
+        viewModelScope.launch {
+            try {
+                val response = animeRepository.fetchAnimeFromApi()
+                logging().info { " fetching anime: ${response.animes.size}" }
+            } catch (e: Exception) {
+               logging().info { "Error fetching anime: ${e.message}" }
+            }
+
+        }
+    }
+
 }

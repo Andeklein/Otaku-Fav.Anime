@@ -5,11 +5,13 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.andre.otakufav_anime.data.model.Convert
 import com.example.animeapp.data.model.Anime
-import retrofit2.Converter
 
 @Database(entities = [Anime::class], version = 1, exportSchema = false)
-@TypeConverters(Converter::class)
+
+@TypeConverters(Convert::class)
+
 abstract class AnimeDatabase : RoomDatabase() {
 
     abstract fun animeDao(): AnimeDao

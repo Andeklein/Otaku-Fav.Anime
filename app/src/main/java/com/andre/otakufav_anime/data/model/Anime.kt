@@ -2,6 +2,7 @@ package com.example.animeapp.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.json.Json
 
 @Entity(tableName = "all_anime")
 
@@ -14,9 +15,19 @@ data class Anime(
     val genre: List<String>,
     val banner: String,
     val image: String,
-    val trailer: Trailer,
-    val characters: List <Character>
-)
+    val trailer: String,
+    val characters: String
+){
+   fun toTrailerObject(): Trailer {
+        val germanTrailer = trailer.split(",")[0]
+        val japaneseTrailer = trailer.split(",")[1]
+        return Trailer(germanTrailer, japaneseTrailer)
+    }
+
+    fun toCharacterObject(): List<Character> {
+        return Json.decodeFromString<List<Character>>(characters)
+    }
+}
 
 data class Trailer(
     val deutsch: String,
