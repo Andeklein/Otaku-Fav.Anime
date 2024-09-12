@@ -23,14 +23,16 @@ interface AnimeAPIService {
     suspend fun getVersion(): VersionResponse
 
     @GET("animeinfo/animeinfo.json")
-    suspend fun getAnime(): AnimeResponse
+    suspend fun getAnime(): List<AnimeApiResponse>
 
 }
 
 object AnimeApi {
-    val service: AnimeAPIService by lazy { retrofit.create(AnimeAPIService::class.java) }
+    val retrofitService: AnimeAPIService by lazy {
+        retrofit.create(AnimeAPIService::class.java)
+    }
 }
 
 data class VersionResponse(
-    var version: Int
+    var version: Double
 )

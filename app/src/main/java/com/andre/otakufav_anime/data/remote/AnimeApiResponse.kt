@@ -1,18 +1,9 @@
 package com.andre.otakufav_anime.data.remote
 
-import androidx.room.PrimaryKey
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-import kotlinx.serialization.json.Json
-
 
 @Serializable
-data class AnimeResponse(
-    val animes: List<Anime>
-)
-
-@Serializable
-data class Anime(
+data class AnimeApiResponse(
 
     val anime: String,
     val info: String,
@@ -34,6 +25,6 @@ data class Character(
     val name: String,
     val description: String,
     val image: String,
-    @SerialName("fähigkeiten") val faehigkeiten: List<String>,
+    val faehigkeiten: List<String>,
 )
 

@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.serialization.json.Json
 
-@Entity(tableName = "all_anime")
+@Entity(tableName = "table_anime")
 
 data class Anime(
 
