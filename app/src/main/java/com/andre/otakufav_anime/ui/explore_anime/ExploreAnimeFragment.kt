@@ -9,10 +9,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import com.andre.otakufav_anime.MainViewModel
-import com.andre.otakufav_anime.R
-import com.andre.otakufav_anime.data.remote.AnimeApiService
 import com.andre.otakufav_anime.databinding.FragmentExploreAnimeBinding
-import com.example.animeapp.ui.exploreanime.AnimeAdapter
 
 class ExploreAnimeFragment : Fragment() {
 

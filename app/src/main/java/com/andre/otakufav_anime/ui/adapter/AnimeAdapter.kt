@@ -48,7 +48,7 @@ class AnimeAdapter(
             animeTitle.text = anime.anime
             animeImage.load(anime.image)
             animeInfo.text = anime.info
-            animeGenre.text = anime.genre.toString()
+           // animeGenre.text = anime.genre.toString()
 
             likeButton.setOnClickListener { onLikeClick(anime) }
             trashButton.setOnClickListener { onDeleteClick(anime) }

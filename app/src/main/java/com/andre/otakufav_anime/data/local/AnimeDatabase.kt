@@ -4,26 +4,29 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.animeapp.data.model.Anime
+import retrofit2.Converter
 
 @Database(entities = [Anime::class], version = 1, exportSchema = false)
+@TypeConverters(Converter::class)
 abstract class AnimeDatabase : RoomDatabase() {
 
     abstract fun animeDao(): AnimeDao
 
     companion object {
-        @Volatile
-        private var INSTANCE: AnimeDatabase? = null
-
+        private lateinit var dbInstance: AnimeDatabase
         fun getDatabase(context: Context): AnimeDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    AnimeDatabase::class.java,
-                    "anime_database"
-                ).build()
-                INSTANCE = instance
-                instance
+            synchronized(this) {
+                // Initialisiere Datenbank
+                if (!this::dbInstance.isInitialized) {
+                    dbInstance = Room.databaseBuilder(
+                        context.applicationContext,
+                        AnimeDatabase::class.java,
+                        "anime_database"
+                    ).build()
+                }
+                return dbInstance
             }
         }
     }
