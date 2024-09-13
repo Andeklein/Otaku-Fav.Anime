@@ -9,7 +9,7 @@ import kotlinx.serialization.json.Json
 data class Anime(
 
     @PrimaryKey(autoGenerate = true)
-    var id: Long= 0,
+    var id: Long = 0,
     val anime: String,
     val info: String,
     val genre: List<String>,
