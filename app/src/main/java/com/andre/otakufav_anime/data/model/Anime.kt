@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 import kotlinx.serialization.json.Json
 
 @Entity(tableName = "table_anime")
-
 data class Anime(
 
     @PrimaryKey(autoGenerate = true)
@@ -16,7 +15,8 @@ data class Anime(
     val banner: String,
     val image: String,
     val trailer: String,
-    val characters: String
+    val characters: String,
+    var isLiked: Boolean = false
 ){
    fun toTrailerObject(): Trailer {
         val germanTrailer = trailer.split(",")[0]

@@ -1,9 +1,13 @@
 package com.andre.otakufav_anime.data
 
 import android.content.Context
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.andre.otakufav_anime.data.local.AnimeDao
 import com.andre.otakufav_anime.data.local.AnimeDatabase
-import com.andre.otakufav_anime.data.remote.AnimeAPIService
+import com.andre.otakufav_anime.data.model.IsLikedAnime
 import com.andre.otakufav_anime.data.remote.AnimeApi
 import com.andre.otakufav_anime.data.remote.AnimeApiResponse
 import com.example.animeapp.data.model.Anime
@@ -24,11 +28,23 @@ class AnimeRepository(
 
     // Holt Animes von der API
     private suspend fun fetchAnimeFromApi(): List<AnimeApiResponse> {
-        return api.retrofitService.getAnime()
+        return api.retrofitService.getAnimes()
 
     }
 
-  /*  suspend fun saveAnimeToDatabase() {
+    suspend fun insertIsLikedAnime(anime: IsLikedAnime){
+        animeDao.insertIsLikedAnime(anime)
+    }
+
+    suspend fun deleteIsLikedAnime(anime: IsLikedAnime){
+        animeDao.deleteIsLikedAnime(anime)
+    }
+
+    fun getAllAnime(): List<IsLikedAnime>{
+        return animeDao.getAllAnime()
+    }
+
+   /* suspend fun saveAnimeToDatabase() {
 
         try {
             val responseVersion = getApiVersion()
@@ -43,7 +59,9 @@ class AnimeRepository(
         } catch (e: Exception) {
             logging().info { "Error fetching anime: ${e.message}" }
         }
-    } */
+    }
+
+    */
 
 }
 

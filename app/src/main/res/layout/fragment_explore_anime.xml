@@ -37,7 +37,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/iv_info_charakter"
+        android:id="@+id/iv_info"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginTop="16dp"
@@ -45,7 +45,9 @@
         android:contentDescription="Info Icon"
         android:src="@drawable/info"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+
+        />
 
     <ImageView
         android:id="@+id/iv_charakter"
@@ -81,7 +83,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/ivHeartIcon_charakter"
+            android:id="@+id/ivHeartIcon"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="32dp"
@@ -98,7 +100,7 @@
         android:layout_width="189dp"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/tv_title"
-        app:layout_constraintEnd_toStartOf="@+id/iv_info_charakter"
+        app:layout_constraintEnd_toStartOf="@+id/iv_info"
         app:layout_constraintStart_toEndOf="@+id/iv_popcorn"
         app:layout_constraintTop_toTopOf="parent" />
 

@@ -1,8 +1,11 @@
 package com.andre.otakufav_anime.data.remote
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.serialization.Serializable
 
 @Serializable
+
 data class AnimeApiResponse(
 
     val anime: String,
@@ -11,7 +14,8 @@ data class AnimeApiResponse(
     val banner: String,
     val image: String,
     val trailer: Trailer,
-    val characters: List<Character>
+    val characters: List<Character>,
+
 )
 
 @Serializable

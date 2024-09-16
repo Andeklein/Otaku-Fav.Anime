@@ -1,19 +1,34 @@
 package com.andre.otakufav_anime.ui.web_view
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import com.andre.otakufav_anime.R
+import com.andre.otakufav_anime.databinding.FragmentWebViewBinding
 
-class YouTubeWebViewActivity : AppCompatActivity() {
+class YouTubeWebViewFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_web__view_)
+    private lateinit var binding: FragmentWebViewBinding
 
-        val webView = findViewById<WebView>(R.id.webView)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentWebViewBinding.inflate(inflater, container, false)
+        return (binding.root)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val webView = binding.webView
 
         // WebView Einstellungen
         val webSettings: WebSettings = webView.settings

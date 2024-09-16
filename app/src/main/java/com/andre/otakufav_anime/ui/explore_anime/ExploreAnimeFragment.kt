@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.andre.otakufav_anime.MainViewModel
+import com.andre.otakufav_anime.data.model.IsLikedAnime
 import com.andre.otakufav_anime.databinding.FragmentExploreAnimeBinding
 
 class ExploreAnimeFragment : Fragment() {
@@ -31,6 +33,23 @@ class ExploreAnimeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.ivInfo.setOnClickListener {
+            val action = ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToDetailAnimeFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.ivPopcorn.setOnClickListener {
+            val action = ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToYouTubeWebViewFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.ivHeartIcon.setOnClickListener {
+            var isLikedAnime = IsLikedAnime(0,"AnimeLiked")
+            viewModel.insertIsLikedAnime(isLikedAnime)
+
+        }
+
 
         viewModel.anime.observe(viewLifecycleOwner) {
             Log.d("Anime","observe: $it")

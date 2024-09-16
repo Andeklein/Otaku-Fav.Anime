@@ -8,22 +8,24 @@
     <fragment
         android:id="@+id/exploreAnimeFragment"
         android:name="com.andre.otakufav_anime.ui.explore_anime.ExploreAnimeFragment"
-        android:label="ExploreAnimeFragment" />
+        android:label="ExploreAnimeFragment"
+        tools:layout="@layout/fragment_explore_anime">
+
+        <action
+            android:id="@+id/actionExploreAnimeFragmentToDetailAnimeFragment"
+            app:destination="@id/detailAnimeFragment" />
+        <action
+            android:id="@+id/action_exploreAnimeFragment_to_youTubeWebViewFragment"
+            app:destination="@id/youTubeWebViewFragment" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/detailAnimeFragment"
         android:name="com.andre.otakufav_anime.ui.detail.DetailAnimeFragment"
         android:label="fragment_detail_anime"
         tools:layout="@layout/fragment_detail_anime" />
-    <activity
-        android:id="@+id/youTubeWebViewActivity"
-        android:name="com.andre.otakufav_anime.ui.web_view.YouTubeWebViewActivity"
-        android:label="fragment_web__view_"
-        tools:layout="@layout/fragment_web__view_" />
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.andre.otakufav_anime.MainActivity"
-        android:label="fragment_explore_anime"
-        tools:layout="@layout/fragment_explore_anime" />
+
     <fragment
         android:id="@+id/itemFavoriteFragment"
         android:name="com.andre.otakufav_anime.ui.favorites.ItemFavoriteFragment"
@@ -40,12 +42,17 @@
         android:label="AGenresFragment"
         tools:layout="@layout/fragment_ani_genres"/>
     <fragment
-        android:id="@+id/exploreCharakterFragment"
-        android:name="com.andre.otakufav_anime.ui.explore_charakter.ExploreCharakterFragment"
-        android:label="ExploreCharakterFragment" />
-    <fragment
         android:id="@+id/detailExploreCharakterFragment"
         android:name="com.andre.otakufav_anime.ui.detail.DetailExploreCharakterFragment"
         android:label="fragment_detail_explore_charakter"
         tools:layout="@layout/fragment_detail_explore_charakter" />
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.andre.otakufav_anime.MainActivity"
+        android:label="fragment_explore_charakter"
+        tools:layout="@layout/fragment_explore_charakter" />
+    <fragment
+        android:id="@+id/youTubeWebViewFragment"
+        android:name="com.andre.otakufav_anime.ui.web_view.YouTubeWebViewFragment"
+        android:label="YouTubeWebViewFragment" />
 </navigation>

@@ -16,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="A Name"
+            android:src="@drawable/action_genre"
             android:textSize="18sp"
             android:textColor="@android:color/black" />
 
@@ -26,6 +27,7 @@
             android:text="A Description"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
+
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
