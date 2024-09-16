@@ -36,7 +36,7 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun deleteIsLikedAnime(anime: IsLikedAnime){
-        viewModelScope.launch {
+        viewModelScope.launch  {
             animeRepository.deleteIsLikedAnime(anime)
         }
     }
