@@ -13,11 +13,11 @@ import com.example.animeapp.data.model.Anime
 interface AnimeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertIsLikedAnime(anime: IsLikedAnime)
+    suspend fun insertIsLikedAnime(anime: AnimeApiResponse)
 
     @Delete
-    suspend fun deleteIsLikedAnime(anime: IsLikedAnime)
+    suspend fun deleteIsLikedAnime(anime: AnimeApiResponse)
 
-    @Query("SELECT * FROM table_anime_liked")
-    fun getAllAnime(): List<IsLikedAnime>
+    @Query("SELECT * FROM table_anime")
+    fun getAllAnime(): List<AnimeApiResponse>
 }

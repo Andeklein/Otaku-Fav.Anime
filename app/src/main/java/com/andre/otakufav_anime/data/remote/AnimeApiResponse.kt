@@ -5,9 +5,11 @@ import androidx.room.PrimaryKey
 import kotlinx.serialization.Serializable
 
 @Serializable
-
+@Entity(tableName = "table_anime")
 data class AnimeApiResponse(
 
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0,
     val anime: String,
     val info: String,
     val genre: List<String>,
@@ -15,6 +17,9 @@ data class AnimeApiResponse(
     val image: String,
     val trailer: Trailer,
     val characters: List<Character>,
+    var isLiked: Boolean = false,
+    var isTrashed: Boolean = false,
+    var isFeatured: Boolean = false
 
 )
 

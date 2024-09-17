@@ -49,12 +49,12 @@ class ExploreAnimeFragment : Fragment() {
 
         binding.ivHeartIcon.setOnClickListener {
             var isLikedAnime = IsLikedAnime(0,"AnimeLiked")
-            viewModel.insertIsLikedAnime(isLikedAnime)
+
         }
 
         binding.ivTrashCharakter.setOnClickListener {
             var isLikedAnime = IsLikedAnime(0,"AnimeLiked")
-            viewModel.deleteIsLikedAnime(isLikedAnime)
+
         }
 
         viewModel.anime.observe(viewLifecycleOwner) {

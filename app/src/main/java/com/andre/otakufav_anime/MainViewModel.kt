@@ -29,20 +29,6 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
 
     }
 
-    fun insertIsLikedAnime(anime: IsLikedAnime){
-        viewModelScope.launch {
-            animeRepository.insertIsLikedAnime(anime)
-        }
-    }
 
-    fun deleteIsLikedAnime(anime: IsLikedAnime){
-        viewModelScope.launch  {
-            animeRepository.deleteIsLikedAnime(anime)
-        }
-    }
-
-    fun getAllAnime(): List<IsLikedAnime>{
-        return animeRepository.getAllAnime()
-    }
 
 }

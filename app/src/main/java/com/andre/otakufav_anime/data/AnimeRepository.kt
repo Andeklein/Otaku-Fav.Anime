@@ -32,17 +32,7 @@ class AnimeRepository(
 
     }
 
-    suspend fun insertIsLikedAnime(anime: IsLikedAnime){
-        animeDao.insertIsLikedAnime(anime)
-    }
 
-    suspend fun deleteIsLikedAnime(anime: IsLikedAnime){
-        animeDao.deleteIsLikedAnime(anime)
-    }
-
-    fun getAllAnime(): List<IsLikedAnime>{
-        return animeDao.getAllAnime()
-    }
 
    /* suspend fun saveAnimeToDatabase() {
 

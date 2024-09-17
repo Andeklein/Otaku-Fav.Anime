@@ -10,7 +10,7 @@ import com.andre.otakufav_anime.data.model.IsLikedAnime
 import com.andre.otakufav_anime.data.remote.AnimeApiResponse
 import com.example.animeapp.data.model.Anime
 
-@Database(entities = [IsLikedAnime::class], version = 1, exportSchema = false)
+@Database(entities = [AnimeApiResponse::class], version = 1, exportSchema = false)
 
 @TypeConverters(Convert::class)
 
