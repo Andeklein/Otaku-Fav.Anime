@@ -1,23 +1,27 @@
 package com.andre.otakufav_anime.data.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
-import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.andre.otakufav_anime.data.model.IsLikedAnime
+import androidx.room.Update
 import com.andre.otakufav_anime.data.remote.AnimeApiResponse
-import com.example.animeapp.data.model.Anime
+
 
 @Dao
 interface AnimeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertIsLikedAnime(anime: AnimeApiResponse)
-
-    @Delete
-    suspend fun deleteIsLikedAnime(anime: AnimeApiResponse)
+    suspend fun insertAllAnime(anime: List<AnimeApiResponse>)
 
     @Query("SELECT * FROM table_anime")
     fun getAllAnime(): List<AnimeApiResponse>
+
+    @Update
+    suspend fun updateAnime(anime: AnimeApiResponse)
+
+    @Query("SELECT * FROM table_anime WHERE isFeatured = 0 ORDER BY RANDOM() LIMIT 1")
+    fun getRandomAnime(): LiveData<AnimeApiResponse>
+
 }

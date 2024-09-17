@@ -1,6 +1,7 @@
 package com.andre.otakufav_anime.data
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -29,10 +30,16 @@ class AnimeRepository(
     // Holt Animes von der API
     private suspend fun fetchAnimeFromApi(): List<AnimeApiResponse> {
         return api.retrofitService.getAnimes()
-
     }
 
+    suspend fun loadDataToDatabase() {
+        val anime = fetchAnimeFromApi()
+        animeDao.insertAllAnime(anime)
+    }
 
+    fun getRandomAnime(): LiveData<AnimeApiResponse> {
+        return animeDao.getRandomAnime()
+    }
 
    /* suspend fun saveAnimeToDatabase() {
 

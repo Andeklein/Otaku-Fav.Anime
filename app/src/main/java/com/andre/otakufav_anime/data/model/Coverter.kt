@@ -9,10 +9,13 @@ class Convert {
 
     @TypeConverter
     fun stringToList(string: String): List<String> = string.split(",")
+
     @TypeConverter
     fun listToString(list: List<String>): String = list.joinToString(",")
+
     @TypeConverter
     fun trailerToString(trailer: Trailer): String = trailer.deutsch +","+ trailer.japanisch
+
     @TypeConverter
     fun stringToTrailer(string: String): Trailer {
         val list = string.split(",")
@@ -28,13 +31,13 @@ class Convert {
         return Character(list[0],list[1],list[2],stringToList(list[3]))
     }
     @TypeConverter
+    fun characterListToString(list: List<Character>): String {
+        return list.joinToString(",") { characterToString(it) }
+    }
+    @TypeConverter
     fun stringToCharacterList(string: String): List<Character>{
         val list = string.split(",")
         return list.map { stringToCharacter(it) }
-    }
-    @TypeConverter
-    fun characterListToString(list: List<Character>): String {
-        return list.joinToString(",") { characterToString(it) }
     }
 
 }
