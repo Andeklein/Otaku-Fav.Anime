@@ -33,11 +33,13 @@ class AnimeRepository(
     }
 
     suspend fun loadDataToDatabase() {
-        val anime = fetchAnimeFromApi()
-        animeDao.insertAllAnime(anime)
+        if (animeDao.getAllAnime().isEmpty()) {
+            val anime = fetchAnimeFromApi()
+            animeDao.insertAllAnime(anime)
+        }
     }
 
-    fun getRandomAnime(): LiveData<AnimeApiResponse> {
+    suspend fun getRandomAnime(): AnimeApiResponse? {
         return animeDao.getRandomAnime()
     }
 

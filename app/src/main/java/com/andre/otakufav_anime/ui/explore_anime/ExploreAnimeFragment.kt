@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import coil.load
 import com.andre.otakufav_anime.MainViewModel
 import com.andre.otakufav_anime.data.model.IsLikedAnime
 import com.andre.otakufav_anime.databinding.FragmentExploreAnimeBinding
@@ -57,8 +58,10 @@ class ExploreAnimeFragment : Fragment() {
 
         }
 
-        viewModel.anime.observe(viewLifecycleOwner) {
+        viewModel.randomAnime.observe(viewLifecycleOwner) {
             Log.d("Anime","observe: $it")
+            binding.tvTitle.text = it.anime
+            binding.ivAnime.load(it.image)
         }
 
         setUpSpinner()

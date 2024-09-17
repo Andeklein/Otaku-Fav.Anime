@@ -41,6 +41,10 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     }
 
     fun getRandomAnime(){
-        _randomAnime.value = animeRepository.getRandomAnime().value
+        viewModelScope.launch {
+            val randomAnime = animeRepository.getRandomAnime()
+            Log.d("Anime","getRandomAnime: $randomAnime")
+            _randomAnime.value = animeRepository.getRandomAnime()
+        }
     }
 }

@@ -16,12 +16,12 @@ interface AnimeDao {
     suspend fun insertAllAnime(anime: List<AnimeApiResponse>)
 
     @Query("SELECT * FROM table_anime")
-    fun getAllAnime(): List<AnimeApiResponse>
+    suspend fun getAllAnime(): List<AnimeApiResponse>
 
     @Update
     suspend fun updateAnime(anime: AnimeApiResponse)
 
     @Query("SELECT * FROM table_anime WHERE isFeatured = 0 ORDER BY RANDOM() LIMIT 1")
-    fun getRandomAnime(): LiveData<AnimeApiResponse>
+    suspend fun getRandomAnime(): AnimeApiResponse?
 
 }

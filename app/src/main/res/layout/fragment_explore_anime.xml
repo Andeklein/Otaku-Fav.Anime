@@ -50,7 +50,7 @@
         />
 
     <ImageView
-        android:id="@+id/iv_charakter"
+        android:id="@+id/iv_anime"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:contentDescription="One Piece Image"
