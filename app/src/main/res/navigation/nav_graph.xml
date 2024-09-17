@@ -24,7 +24,11 @@
         android:id="@+id/detailAnimeFragment"
         android:name="com.andre.otakufav_anime.ui.detail.DetailAnimeFragment"
         android:label="fragment_detail_anime"
-        tools:layout="@layout/fragment_detail_anime" />
+        tools:layout="@layout/fragment_detail_anime" >
+        <action
+            android:id="@+id/action_detailAnimeFragment_to_exploreAnimeFragment"
+            app:destination="@id/exploreAnimeFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/itemFavoriteFragment"

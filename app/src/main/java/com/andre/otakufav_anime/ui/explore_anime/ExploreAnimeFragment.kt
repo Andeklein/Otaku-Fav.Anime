@@ -47,7 +47,6 @@ class ExploreAnimeFragment : Fragment() {
         binding.ivHeartIcon.setOnClickListener {
             var isLikedAnime = IsLikedAnime(0,"AnimeLiked")
             viewModel.insertIsLikedAnime(isLikedAnime)
-
         }
 
 
