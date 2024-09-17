@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -34,6 +35,8 @@ class ExploreAnimeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setUpSpinner()
+
         binding.ivInfo.setOnClickListener {
             val action = ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToDetailAnimeFragment()
             findNavController().navigate(action)
@@ -49,6 +52,10 @@ class ExploreAnimeFragment : Fragment() {
             viewModel.insertIsLikedAnime(isLikedAnime)
         }
 
+        binding.ivTrashCharakter.setOnClickListener {
+            var isLikedAnime = IsLikedAnime(0,"AnimeLiked")
+            viewModel.deleteIsLikedAnime(isLikedAnime)
+        }
 
         viewModel.anime.observe(viewLifecycleOwner) {
             Log.d("Anime","observe: $it")
@@ -70,8 +77,25 @@ class ExploreAnimeFragment : Fragment() {
             filterData
         )
 
-        binding.spinnerExplore.onItemSelectedListener
-
+        binding.spinnerExplore.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                when (position) {
+                    1 -> {
+                        // Navigate to ExploreCharakterFragment if "Charakter" is selected
+                        val action =
+                            ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToExploreCharakterFragment()
+                        findNavController().navigate(action)
+                    }
+                }
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                // No action needed
+            }
+        }
     }
-
 }

@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_exploreAnimeFragment_to_youTubeWebViewFragment"
             app:destination="@id/youTubeWebViewFragment" />
+        <action
+            android:id="@+id/action_exploreAnimeFragment_to_exploreCharakterFragment"
+            app:destination="@id/exploreCharakterFragment" />
 
     </fragment>
 
@@ -59,4 +62,12 @@
         android:id="@+id/youTubeWebViewFragment"
         android:name="com.andre.otakufav_anime.ui.web_view.YouTubeWebViewFragment"
         android:label="YouTubeWebViewFragment" />
+    <fragment
+        android:id="@+id/exploreCharakterFragment"
+        android:name="com.andre.otakufav_anime.ui.explore_charakter.ExploreCharakterFragment"
+        android:label="ExploreCharakterFragment" >
+        <action
+            android:id="@+id/action_exploreCharakterFragment_to_exploreAnimeFragment"
+            app:destination="@id/exploreAnimeFragment" />
+    </fragment>
 </navigation>

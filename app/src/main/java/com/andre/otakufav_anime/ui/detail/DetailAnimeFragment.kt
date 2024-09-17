@@ -27,7 +27,7 @@ class DetailAnimeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.backButton.setOnClickListener {
+        binding.ivBack.setOnClickListener {
             val action = DetailAnimeFragmentDirections.actionDetailAnimeFragmentToExploreAnimeFragment()
             findNavController().navigateUp()
         }
