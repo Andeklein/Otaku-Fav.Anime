@@ -9,12 +9,15 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.andre.otakufav_anime.MainViewModel
 import com.andre.otakufav_anime.R
 import com.andre.otakufav_anime.databinding.FragmentWebViewBinding
 
 class YouTubeWebViewFragment : Fragment() {
 
     private lateinit var binding: FragmentWebViewBinding
+    private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,5 +43,9 @@ class YouTubeWebViewFragment : Fragment() {
 
         // Lade die YouTube-URL
         webView.loadUrl("https://www.youtube.com")
+
+        viewModel.randomAnime.observe(viewLifecycleOwner) {
+            binding.webView.loadUrl(it.trailer.deutsch)
+        }
     }
 }

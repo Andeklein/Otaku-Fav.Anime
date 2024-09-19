@@ -54,7 +54,7 @@ class ExploreAnimeFragment : Fragment() {
         }
 
         binding.ivTrashCharakter.setOnClickListener {
-            var isLikedAnime = IsLikedAnime(0,"AnimeLiked")
+            var isTrashedAnime = IsLikedAnime(0,"AnimeLiked")
 
         }
 
