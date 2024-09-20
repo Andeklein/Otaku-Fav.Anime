@@ -12,6 +12,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
 import com.andre.otakufav_anime.MainViewModel
+import com.andre.otakufav_anime.Utils
 import com.andre.otakufav_anime.data.model.IsLikedAnime
 import com.andre.otakufav_anime.databinding.FragmentExploreAnimeBinding
 
@@ -58,10 +59,11 @@ class ExploreAnimeFragment : Fragment() {
         }
 
         viewModel.randomAnime.observe(viewLifecycleOwner) {
+            val newUrl = Utils.extractImageUrl(it.image)
             Log.d("Anime","observe: $it")
             binding.tvTitle.text = it.anime
-            binding.ivAnime.load(it.image)
-            Log.d("AnimeImage","observe: ${it.image}")
+            binding.ivAnime.load(newUrl)
+            Log.d("AnimeImage","observe: ${newUrl}")
             binding.tvImgUrl.text = it.image
         }
 
