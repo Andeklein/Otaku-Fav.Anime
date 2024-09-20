@@ -11,8 +11,10 @@ import androidx.navigation.fragment.findNavController
 import coil.load
 import com.andre.otakufav_anime.MainViewModel
 import com.andre.otakufav_anime.R
+import com.andre.otakufav_anime.Utils
 import com.andre.otakufav_anime.databinding.FragmentDetailAnimeBinding
 import com.andre.otakufav_anime.databinding.FragmentDetailExploreCharakterBinding
+import com.andre.otakufav_anime.ui.adapter.CharakterAdapter
 
 class DetailAnimeFragment : Fragment() {
 
@@ -33,13 +35,16 @@ class DetailAnimeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.randomAnime.observe(viewLifecycleOwner) {
+            val newUrl = Utils.extractImageUrl(it.banner)
+            val charakterAdapter = CharakterAdapter(it.characters)
             Log.d("Anime","observe: $it")
             binding.tvAnimeName.text = it.anime
-            binding.ivAnimeBanner.load(it.image)
+            binding.ivAnimeBanner.load(newUrl)
             binding.tvAnimeDescription.text = it.info
             binding.tvGenre1.text = it.genre[0]
             binding.tvGenre2.text = it.genre[1]
             binding.tvGenre3.text = it.genre[2]
+            binding.rvCharactersList.adapter = charakterAdapter
 
         }
       /*  binding.ivBack.setOnClickListener {

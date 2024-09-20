@@ -55,7 +55,6 @@ class ExploreAnimeFragment : Fragment() {
 
         binding.ivTrashCharakter.setOnClickListener {
             viewModel.trashAnime()
-
         }
 
         viewModel.randomAnime.observe(viewLifecycleOwner) {
@@ -64,7 +63,6 @@ class ExploreAnimeFragment : Fragment() {
             binding.tvTitle.text = it.anime
             binding.ivAnime.load(newUrl)
             Log.d("AnimeImage","observe: ${newUrl}")
-            binding.tvImgUrl.text = it.image
         }
 
         setUpSpinner()
