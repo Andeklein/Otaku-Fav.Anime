@@ -47,4 +47,19 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
             _randomAnime.value = animeRepository.getRandomAnime()
         }
     }
+
+    fun updateIsLikedAnime() {
+        _randomAnime.value?.isLiked = !_randomAnime.value?.isLiked!!
+        viewModelScope.launch {
+            animeRepository.updateAnime(_randomAnime.value!!)
+        }
+        getRandomAnime()
+    }
+    fun trashAnime() {
+        _randomAnime.value?.isTrashed = true
+        getRandomAnime()
+        viewModelScope.launch {
+            animeRepository.updateAnime(_randomAnime.value!!)
+        }
+    }
 }

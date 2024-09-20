@@ -49,12 +49,11 @@ class ExploreAnimeFragment : Fragment() {
         }
 
         binding.ivHeartIcon.setOnClickListener {
-            var isLikedAnime = IsLikedAnime(0,"AnimeLiked")
-
+            viewModel.updateIsLikedAnime()
         }
 
         binding.ivTrashCharakter.setOnClickListener {
-            var isTrashedAnime = IsLikedAnime(0,"AnimeLiked")
+            viewModel.trashAnime()
 
         }
 
@@ -62,6 +61,8 @@ class ExploreAnimeFragment : Fragment() {
             Log.d("Anime","observe: $it")
             binding.tvTitle.text = it.anime
             binding.ivAnime.load(it.image)
+            Log.d("AnimeImage","observe: ${it.image}")
+            binding.tvImgUrl.text = it.image
         }
 
         setUpSpinner()

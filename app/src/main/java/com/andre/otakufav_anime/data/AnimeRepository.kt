@@ -43,6 +43,10 @@ class AnimeRepository(
         return animeDao.getRandomAnime()
     }
 
+    suspend fun updateAnime(anime: AnimeApiResponse){
+        animeDao.updateAnime(anime)
+    }
+
    /* suspend fun saveAnimeToDatabase() {
 
         try {
