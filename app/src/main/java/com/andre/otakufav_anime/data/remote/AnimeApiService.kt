@@ -23,7 +23,7 @@ interface AnimeAPIService {
     @GET("animeinfo/version.json")
     suspend fun getVersion(): VersionResponse
 
-    @GET("animeinfo/animeinfo.json")
+    @GET("animeinfo/reponse.json")
     suspend fun getAnimes(): List<AnimeApiResponse>
 
 }
