@@ -24,4 +24,6 @@ interface AnimeDao {
     @Query("SELECT * FROM table_anime WHERE isFeatured = 0 ORDER BY RANDOM() LIMIT 1")
     suspend fun getRandomAnime(): AnimeApiResponse?
 
+    @Query("SELECT * FROM table_anime WHERE isLiked = 1")
+    suspend fun getLikedAnime(): List<AnimeApiResponse>
 }

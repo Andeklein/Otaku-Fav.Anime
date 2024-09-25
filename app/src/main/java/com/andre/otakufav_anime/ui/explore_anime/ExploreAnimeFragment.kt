@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import coil.load
 import com.andre.otakufav_anime.MainViewModel
 import com.andre.otakufav_anime.Utils
-import com.andre.otakufav_anime.data.model.IsLikedAnime
 import com.andre.otakufav_anime.databinding.FragmentExploreAnimeBinding
 
 class ExploreAnimeFragment : Fragment() {
@@ -40,12 +39,14 @@ class ExploreAnimeFragment : Fragment() {
         setUpSpinner()
 
         binding.ivInfo.setOnClickListener {
-            val action = ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToDetailAnimeFragment()
+            val action =
+                ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToDetailAnimeFragment()
             findNavController().navigate(action)
         }
 
         binding.ivPopcorn.setOnClickListener {
-            val action = ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToYouTubeWebViewFragment()
+            val action =
+                ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToYouTubeWebViewFragment()
             findNavController().navigate(action)
         }
 
@@ -59,10 +60,10 @@ class ExploreAnimeFragment : Fragment() {
 
         viewModel.randomAnime.observe(viewLifecycleOwner) {
             val newUrl = Utils.extractImageUrl(it.image)
-            Log.d("Anime","observe: $it")
+            Log.d("Anime", "observe: $it")
             binding.tvTitle.text = it.anime
             binding.ivAnime.load(newUrl)
-            Log.d("AnimeImage","observe: ${newUrl}")
+            Log.d("AnimeImage", "observe: ${newUrl}")
         }
 
         setUpSpinner()
@@ -72,7 +73,7 @@ class ExploreAnimeFragment : Fragment() {
 
         val filterData = mutableListOf(
             "Anime",
-            "Charakter"
+            "Character"
         )
 
         binding.spinnerExplore.adapter = ArrayAdapter(
@@ -81,25 +82,27 @@ class ExploreAnimeFragment : Fragment() {
             filterData
         )
 
-        binding.spinnerExplore.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                when (position) {
-                    1 -> {
-                        // Navigate to ExploreCharakterFragment if "Charakter" is selected
-                        val action =
-                            ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToExploreCharakterFragment()
-                        findNavController().navigate(action)
+        binding.spinnerExplore.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    when (position) {
+                        1 -> {
+                            // Navigate to ExploreCharakterFragment if "Charakter" is selected
+                            val action =
+                                ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToExploreCharakterFragment()
+                            findNavController().navigate(action)
+                        }
                     }
                 }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // No action needed
+                }
             }
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // No action needed
-            }
-        }
     }
 }

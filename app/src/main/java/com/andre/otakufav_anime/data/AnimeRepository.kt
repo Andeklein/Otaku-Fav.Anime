@@ -1,17 +1,10 @@
 package com.andre.otakufav_anime.data
 
 import android.content.Context
-import androidx.lifecycle.LiveData
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
 import com.andre.otakufav_anime.data.local.AnimeDao
 import com.andre.otakufav_anime.data.local.AnimeDatabase
-import com.andre.otakufav_anime.data.model.IsLikedAnime
 import com.andre.otakufav_anime.data.remote.AnimeApi
 import com.andre.otakufav_anime.data.remote.AnimeApiResponse
-import com.example.animeapp.data.model.Anime
 import org.lighthousegames.logging.logging
 
 class AnimeRepository(
@@ -32,6 +25,10 @@ class AnimeRepository(
         return api.retrofitService.getAnimes()
     }
 
+    suspend fun getLikedAnime(): List<AnimeApiResponse> {
+        return animeDao.getLikedAnime()
+    }
+
     suspend fun loadDataToDatabase() {
         if (animeDao.getAllAnime().isEmpty()) {
             val anime = fetchAnimeFromApi()
@@ -47,15 +44,15 @@ class AnimeRepository(
         animeDao.updateAnime(anime)
     }
 
-   /* suspend fun saveAnimeToDatabase() {
+    suspend fun saveAnimeToDatabase() {
 
         try {
             val responseVersion = getApiVersion()
             val responseAnime = fetchAnimeFromApi()
 
             if (responseVersion == 1.0){
-                responseAnime.forEach { anime ->
-                    animeDao.insertAnime()
+                responseAnime.forEach {
+                    animeDao.getRandomAnime()
                 }
             }
             logging().info { " fetching anime: ${responseAnime.size}" }
@@ -63,8 +60,5 @@ class AnimeRepository(
             logging().info { "Error fetching anime: ${e.message}" }
         }
     }
-
-    */
-
 }
 

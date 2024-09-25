@@ -6,9 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.andre.otakufav_anime.data.model.Convert
-import com.andre.otakufav_anime.data.model.IsLikedAnime
 import com.andre.otakufav_anime.data.remote.AnimeApiResponse
-import com.example.animeapp.data.model.Anime
+import com.andre.otakufav_anime.data.remote.Character
 
 @Database(entities = [AnimeApiResponse::class], version = 1, exportSchema = false)
 

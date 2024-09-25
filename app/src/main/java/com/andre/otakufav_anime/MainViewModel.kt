@@ -7,16 +7,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.andre.otakufav_anime.data.AnimeRepository
-import com.andre.otakufav_anime.data.model.IsLikedAnime
 import com.andre.otakufav_anime.data.remote.AnimeApiResponse
 import com.example.animeapp.data.model.Anime
 import kotlinx.coroutines.launch
-import org.lighthousegames.logging.logging
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
 
    private val animeRepository = AnimeRepository(application.applicationContext)
-
 
     private val _apiVersion = MutableLiveData<Int>()
     val apiVersion: LiveData<Int>
@@ -30,8 +27,20 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     val randomAnime: LiveData<AnimeApiResponse>
         get() = _randomAnime
 
+    private val _isLikedAnime = MutableLiveData<List<AnimeApiResponse>>()
+    val isLikedAnime: LiveData<List<AnimeApiResponse>>
+        get() = _isLikedAnime
+
+    fun loadLikedAnimes() {
+        viewModelScope.launch {
+            _isLikedAnime.value = animeRepository.getLikedAnime()
+        }
+    }
+
+
     init {
         loadDataToDatabase()
+
     }
     fun loadDataToDatabase() {
         viewModelScope.launch {

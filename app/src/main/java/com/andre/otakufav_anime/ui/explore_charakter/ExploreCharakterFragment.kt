@@ -7,13 +7,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import coil.load
+import com.andre.otakufav_anime.MainViewModel
 import com.andre.otakufav_anime.R
+import com.andre.otakufav_anime.Utils
+import com.andre.otakufav_anime.databinding.FragmentExploreAnimeBinding
 import com.andre.otakufav_anime.databinding.FragmentExploreCharakterBinding
 
 class ExploreCharakterFragment : Fragment() {
 
     private lateinit var binding: FragmentExploreCharakterBinding
+    private val viewModel: MainViewModel by activityViewModels()
 
 
     override fun onCreateView(
@@ -28,6 +34,13 @@ class ExploreCharakterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpSpinner()
+
+        viewModel.randomAnime.observe(viewLifecycleOwner) {
+            val newCharacter = it.characters.random()
+            val newUrl = Utils.extractImageUrl(newCharacter.image)
+            binding.tvTitle.text = newCharacter.name
+            binding.ivCharakter.load(newUrl)
+        }
     }
 
     private fun setUpSpinner() {
