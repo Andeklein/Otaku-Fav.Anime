@@ -14,74 +14,75 @@
     app:strokeWidth="3dp"
     android:backgroundTint="@color/black">
 
-<androidx.constraintlayout.widget.ConstraintLayout
-android:layout_height="match_parent"
-android:layout_width="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/ivFavorite"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.812"
-        app:srcCompat="@drawable/herz" />
+        <ImageView
+            android:id="@+id/ivFavorite"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.812"
+            app:srcCompat="@drawable/herz" />
 
-    <ImageView
-        android:id="@+id/img_anime"
-        android:layout_width="66dp"
-        android:layout_height="66dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/one_piece_" />
+        <ImageView
+            android:id="@+id/img_anime"
+            android:layout_width="66dp"
+            android:layout_height="66dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/one_piece_" />
 
-    <TextView
-        android:id="@+id/tvAnimeTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="64dp"
-        android:text="One Piece"
-        android:textColor="#F20303"
-        android:textSize="22sp"
-        app:layout_constraintStart_toEndOf="@id/img_anime"
-        app:layout_constraintTop_toTopOf="@id/img_anime" />
+        <TextView
+            android:id="@+id/tvAnimeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="One Piece"
+            android:textColor="#F20303"
+            android:textSize="22sp"
+            app:layout_constraintStart_toEndOf="@id/img_anime"
+            app:layout_constraintTop_toTopOf="@id/img_anime" />
 
-    <TextView
-        android:id="@+id/tvAnimeGenre"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:text="Fighting-Shounen"
-        android:textColor="#F20303"
-        app:layout_constraintBottom_toBottomOf="@id/img_anime"
-        app:layout_constraintStart_toStartOf="@id/img_anime" />
+        <TextView
+            android:id="@+id/tvAnimeGenre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="80dp"
+            android:text="Fighting-Shounen"
+            android:textColor="#F20303"
+            app:layout_constraintBottom_toBottomOf="@id/img_anime"
+            app:layout_constraintStart_toStartOf="@id/img_anime" />
 
-    <TextView
-        android:id="@+id/tvAnimeGenre2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Abenteuer"
-        android:textColor="#F20303"
-        app:layout_constraintStart_toEndOf="@+id/tvAnimeGenre"
-        app:layout_constraintTop_toTopOf="@+id/tvAnimeGenre" />
+        <TextView
+            android:id="@+id/tvAnimeGenre2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Abenteuer"
+            android:textColor="#F20303"
+            app:layout_constraintStart_toEndOf="@+id/tvAnimeGenre"
+            app:layout_constraintTop_toTopOf="@+id/tvAnimeGenre" />
 
-    <TextView
-        android:id="@+id/tvAnimeGenre3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:text="Fantasy"
-        android:textColor="#F20303"
-        app:layout_constraintStart_toEndOf="@+id/tvAnimeGenre2"
-        app:layout_constraintTop_toTopOf="@+id/tvAnimeGenre2" />
+        <TextView
+            android:id="@+id/tvAnimeGenre3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Fantasy"
+            android:textColor="#F20303"
+            app:layout_constraintStart_toEndOf="@+id/tvAnimeGenre2"
+            app:layout_constraintTop_toTopOf="@+id/tvAnimeGenre2" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>

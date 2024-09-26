@@ -9,11 +9,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
-import com.andre.otakufav_anime.MainViewModel
-import com.andre.otakufav_anime.R
-import com.andre.otakufav_anime.Utils
+import com.andre.otakufav_anime.viewModel.MainViewModel
+import com.andre.otakufav_anime.utils.Utils
 import com.andre.otakufav_anime.databinding.FragmentDetailAnimeBinding
-import com.andre.otakufav_anime.databinding.FragmentDetailExploreCharakterBinding
 import com.andre.otakufav_anime.ui.adapter.CharakterAdapter
 
 class DetailAnimeFragment : Fragment() {
@@ -26,7 +24,7 @@ class DetailAnimeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
+
         _binding = FragmentDetailAnimeBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -34,7 +32,7 @@ class DetailAnimeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.randomAnime.observe(viewLifecycleOwner) {
+        viewModel.currentAnime.observe(viewLifecycleOwner) {
             val newUrl = Utils.extractImageUrl(it.banner)
             val charakterAdapter = CharakterAdapter(it.characters)
             Log.d("Anime","observe: $it")
@@ -47,13 +45,8 @@ class DetailAnimeFragment : Fragment() {
             binding.rvCharactersList.adapter = charakterAdapter
 
         }
-      /*  binding.ivBack.setOnClickListener {
-            val action = DetailAnimeFragmentDirections.actionDetailAnimeFragmentToExploreAnimeFragment()
+        binding.ivBack.setOnClickListener {
             findNavController().navigateUp()
         }
-
-       */
-
     }
-
 }

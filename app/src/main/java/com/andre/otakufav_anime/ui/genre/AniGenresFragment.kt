@@ -13,7 +13,7 @@ import com.andre.otakufav_anime.R
 import com.andre.otakufav_anime.databinding.FragmentAniGenresBinding
 import com.example.animeapp.A
 import com.example.animeapp.AAdapter
-import com.example.animeapp.AGenresViewModel
+import com.andre.otakufav_anime.viewModel.AGenresViewModel
 
 class AniGenresFragment : Fragment() {
 

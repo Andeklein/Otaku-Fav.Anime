@@ -6,9 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import com.andre.otakufav_anime.MainViewModel
-import com.andre.otakufav_anime.R
-import com.andre.otakufav_anime.data.remote.AnimeApiResponse
+import androidx.navigation.fragment.findNavController
+import com.andre.otakufav_anime.viewModel.MainViewModel
 import com.andre.otakufav_anime.databinding.FragmentFavoriteBinding
 import com.andre.otakufav_anime.ui.adapter.AnimeAdapter
 
@@ -36,8 +35,10 @@ class FavoriteFragment : Fragment() {
 
         viewModel.isLikedAnime.observe(viewLifecycleOwner) { likedAnimes ->
 
-            val adapter = AnimeAdapter(likedAnimes)
+            val adapter = AnimeAdapter(likedAnimes,viewModel)
             binding.rvFavorite.adapter = adapter
         }
+
     }
+
 }

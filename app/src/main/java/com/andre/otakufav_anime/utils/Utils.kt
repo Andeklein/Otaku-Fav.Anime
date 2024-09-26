@@ -1,4 +1,4 @@
-package com.andre.otakufav_anime
+package com.andre.otakufav_anime.utils
 
 import java.net.URLDecoder
 

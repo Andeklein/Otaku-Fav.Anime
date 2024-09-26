@@ -1,8 +1,9 @@
-package com.example.animeapp
+package com.andre.otakufav_anime.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.animeapp.A
 
 class AGenresViewModel : ViewModel() {
 

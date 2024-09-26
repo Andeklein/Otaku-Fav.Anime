@@ -1,4 +1,4 @@
-package com.andre.otakufav_anime.ui.explore_anime
+package com.andre.otakufav_anime.ui.explore
 
 import android.os.Bundle
 import android.util.Log
@@ -11,8 +11,8 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
-import com.andre.otakufav_anime.MainViewModel
-import com.andre.otakufav_anime.Utils
+import com.andre.otakufav_anime.viewModel.MainViewModel
+import com.andre.otakufav_anime.utils.Utils
 import com.andre.otakufav_anime.databinding.FragmentExploreAnimeBinding
 
 class ExploreAnimeFragment : Fragment() {

@@ -1,10 +1,8 @@
-package com.andre.otakufav_anime.data
+package com.andre.otakufav_anime.data.remote
 
 import android.content.Context
 import com.andre.otakufav_anime.data.local.AnimeDao
 import com.andre.otakufav_anime.data.local.AnimeDatabase
-import com.andre.otakufav_anime.data.remote.AnimeApi
-import com.andre.otakufav_anime.data.remote.AnimeApiResponse
 import org.lighthousegames.logging.logging
 
 class AnimeRepository(

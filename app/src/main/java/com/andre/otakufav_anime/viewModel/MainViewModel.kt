@@ -1,4 +1,4 @@
-package com.andre.otakufav_anime
+package com.andre.otakufav_anime.viewModel
 
 import android.app.Application
 import android.util.Log
@@ -6,7 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.andre.otakufav_anime.data.AnimeRepository
+import com.andre.otakufav_anime.data.remote.AnimeRepository
 import com.andre.otakufav_anime.data.remote.AnimeApiResponse
 import com.example.animeapp.data.model.Anime
 import kotlinx.coroutines.launch
@@ -30,6 +30,10 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     private val _isLikedAnime = MutableLiveData<List<AnimeApiResponse>>()
     val isLikedAnime: LiveData<List<AnimeApiResponse>>
         get() = _isLikedAnime
+
+    private val _currentAnime = MutableLiveData<AnimeApiResponse>()
+    val currentAnime: LiveData<AnimeApiResponse>
+        get() = _currentAnime
 
     fun loadLikedAnimes() {
         viewModelScope.launch {
@@ -70,5 +74,9 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch {
             animeRepository.updateAnime(_randomAnime.value!!)
         }
+    }
+
+    fun setCurrentAnime(anime: AnimeApiResponse) {
+        _currentAnime.value = anime
     }
 }

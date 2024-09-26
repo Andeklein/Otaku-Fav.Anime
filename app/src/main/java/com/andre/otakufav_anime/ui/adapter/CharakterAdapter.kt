@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.andre.otakufav_anime.Utils
+import com.andre.otakufav_anime.utils.Utils
 import com.andre.otakufav_anime.data.remote.Character
 import com.andre.otakufav_anime.databinding.ItemCharakterBinding
 

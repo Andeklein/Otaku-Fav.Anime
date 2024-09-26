@@ -1,4 +1,4 @@
-package com.andre.otakufav_anime.ui.explore_charakter
+package com.andre.otakufav_anime.ui.explore
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -10,17 +10,14 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
-import com.andre.otakufav_anime.MainViewModel
-import com.andre.otakufav_anime.R
-import com.andre.otakufav_anime.Utils
-import com.andre.otakufav_anime.databinding.FragmentExploreAnimeBinding
+import com.andre.otakufav_anime.viewModel.MainViewModel
+import com.andre.otakufav_anime.utils.Utils
 import com.andre.otakufav_anime.databinding.FragmentExploreCharakterBinding
 
 class ExploreCharakterFragment : Fragment() {
 
     private lateinit var binding: FragmentExploreCharakterBinding
     private val viewModel: MainViewModel by activityViewModels()
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,6 +31,15 @@ class ExploreCharakterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setUpSpinner()
+
+        binding.ivInfo.setOnClickListener{
+            val action = ExploreCharakterFragmentDirections.actionExploreCharakterFragmentToDetailExploreCharakterFragment()
+            findNavController().navigate(action)
+        }
+
+        binding.ivHeartIconCharakter.setOnClickListener {
+            viewModel.updateIsLikedAnime()
+        }
 
         viewModel.randomAnime.observe(viewLifecycleOwner) {
             val newCharacter = it.characters.random()

@@ -5,13 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.andre.otakufav_anime.R
+import com.andre.otakufav_anime.databinding.FragmentItemFavoriteBinding
 
 class ItemFavoriteFragment : Fragment() {
 
+    private lateinit var binding: FragmentItemFavoriteBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
@@ -19,7 +22,11 @@ class ItemFavoriteFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_item_favorite, container, false)
+        binding = FragmentItemFavoriteBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+    }
 }

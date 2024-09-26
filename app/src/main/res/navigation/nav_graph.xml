@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/exploreAnimeFragment"
-        android:name="com.andre.otakufav_anime.ui.explore_anime.ExploreAnimeFragment"
+        android:name="com.andre.otakufav_anime.ui.explore.ExploreAnimeFragment"
         android:label="ExploreAnimeFragment"
         tools:layout="@layout/fragment_explore_anime">
 
@@ -64,8 +64,11 @@
         android:label="YouTubeWebViewFragment" />
     <fragment
         android:id="@+id/exploreCharakterFragment"
-        android:name="com.andre.otakufav_anime.ui.explore_charakter.ExploreCharakterFragment"
+        android:name="com.andre.otakufav_anime.ui.explore.ExploreCharakterFragment"
         android:label="ExploreCharakterFragment" >
+        <action
+            android:id="@+id/action_exploreCharakterFragment_to_detailExploreCharakterFragment"
+            app:destination="@id/detailExploreCharakterFragment" />
         <action
             android:id="@+id/action_exploreCharakterFragment_to_exploreAnimeFragment"
             app:destination="@id/exploreAnimeFragment" />
