@@ -41,11 +41,10 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-
     init {
         loadDataToDatabase()
-
     }
+
     fun loadDataToDatabase() {
         viewModelScope.launch {
             animeRepository.loadDataToDatabase()

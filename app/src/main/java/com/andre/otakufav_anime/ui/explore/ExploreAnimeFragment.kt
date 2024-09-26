@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import coil.load
+import com.andre.otakufav_anime.R
 import com.andre.otakufav_anime.viewModel.MainViewModel
 import com.andre.otakufav_anime.utils.Utils
 import com.andre.otakufav_anime.databinding.FragmentExploreAnimeBinding
@@ -19,7 +20,6 @@ class ExploreAnimeFragment : Fragment() {
 
     private lateinit var binding: FragmentExploreAnimeBinding
     private val viewModel: MainViewModel by activityViewModels()
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,12 +38,6 @@ class ExploreAnimeFragment : Fragment() {
 
         setUpSpinner()
 
-        binding.ivInfo.setOnClickListener {
-            val action =
-                ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToDetailAnimeFragment()
-            findNavController().navigate(action)
-        }
-
         binding.ivPopcorn.setOnClickListener {
             val action =
                 ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToYouTubeWebViewFragment()
@@ -58,14 +52,18 @@ class ExploreAnimeFragment : Fragment() {
             viewModel.trashAnime()
         }
 
-        viewModel.randomAnime.observe(viewLifecycleOwner) {
-            val newUrl = Utils.extractImageUrl(it.image)
-            Log.d("Anime", "observe: $it")
-            binding.tvTitle.text = it.anime
+        viewModel.randomAnime.observe(viewLifecycleOwner) { anime->
+            val newUrl = Utils.extractImageUrl(anime.image)
+            Log.d("Anime", "observe: $anime")
+            binding.tvTitle.text = anime.anime
             binding.ivAnime.load(newUrl)
             Log.d("AnimeImage", "observe: ${newUrl}")
-        }
 
+            binding.ivInfo.setOnClickListener {
+                viewModel.setCurrentAnime(anime)
+                findNavController().navigate(R.id.action_exploreAnimeFragment_to_detailAnimeFragment)
+            }
+        }
         setUpSpinner()
     }
 

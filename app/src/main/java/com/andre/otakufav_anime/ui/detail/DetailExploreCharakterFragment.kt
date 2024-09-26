@@ -45,21 +45,8 @@ class DetailExploreCharakterFragment : Fragment() {
                     binding.characterName.text = newCharacter.name
                     binding.characterImage.load(newUrl)
                     binding.characterDescription.text = newCharacter.description
-                    binding.faehigkeitenLabel.text = newCharacter.fähigkeiten.joinToString(", ")
-                    var size :Int = newCharacter.fähigkeiten.size
-                    try {
-                        binding.tvFaehigkeit1.text = newCharacter.fähigkeiten[0]
-                        // binding.tvFaehigkeit2.text = newCharacter.faehigkeiten[1]
-                        //binding.tvFaehigkeit3.text = newCharacter.faehigkeiten[2]
-
-                    }
-                    catch (e:Exception){}
-
                 }
-
             }
         }
-
-
     }
 }

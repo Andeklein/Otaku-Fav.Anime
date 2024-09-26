@@ -12,7 +12,7 @@
         tools:layout="@layout/fragment_explore_anime">
 
         <action
-            android:id="@+id/actionExploreAnimeFragmentToDetailAnimeFragment"
+            android:id="@+id/action_exploreAnimeFragment_to_detailAnimeFragment"
             app:destination="@id/detailAnimeFragment" />
         <action
             android:id="@+id/action_exploreAnimeFragment_to_youTubeWebViewFragment"
@@ -20,7 +20,6 @@
         <action
             android:id="@+id/action_exploreAnimeFragment_to_exploreCharakterFragment"
             app:destination="@id/exploreCharakterFragment" />
-
     </fragment>
 
     <fragment

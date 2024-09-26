@@ -20,7 +20,6 @@ data class AnimeApiResponse(
     var isLiked: Boolean = false,
     var isTrashed: Boolean = false,
     var isFeatured: Boolean = false
-
 )
 
 @Serializable
