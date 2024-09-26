@@ -24,7 +24,7 @@ class Convert {
     }
     @TypeConverter
     fun characterToString(character: Character): String {
-        return character.name +"|"+ character.description +"|"+ character.image +"|"+ listToString(character.faehigkeiten)
+        return character.name +"|"+ character.description +"|"+ character.image +"|"+ listToString(character.fähigkeiten)
     }
     @TypeConverter
     fun stringToCharacter(string: String): Character {

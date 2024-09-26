@@ -1,6 +1,7 @@
 package com.andre.otakufav_anime.ui.detail
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,6 +20,7 @@ class DetailExploreCharakterFragment : Fragment() {
 
     private lateinit var binding: FragmentDetailExploreCharakterBinding
     private val viewModel: MainViewModel by activityViewModels()
+    val args : DetailExploreCharakterFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,16 +38,28 @@ class DetailExploreCharakterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.randomAnime.observe(viewLifecycleOwner) {
-            val newCharacter = it.characters.random()
-            val newUrl = Utils.extractImageUrl(newCharacter.image)
-            binding.characterName.text = newCharacter.name
-            binding.characterImage.load(newUrl)
-            binding.characterDescription.text = newCharacter.description
-            /* binding.faehigkeitenLabel.text = newCharacter.faehigkeiten.joinToString(", ")
-             binding.Faehigkeit1.text = newCharacter.faehigkeiten[0]
-             binding.tvFaehigkeit2.text = newCharacter.faehigkeiten[1]
-             binding.tvFaehigkeit3.text = newCharacter.faehigkeiten[2]
-             */
+            for(i in 0..it.characters.size-1){
+                if (args.name == it.characters[i].name){
+                    val newCharacter = it.characters[i]
+                    val newUrl = Utils.extractImageUrl(newCharacter.image)
+                    binding.characterName.text = newCharacter.name
+                    binding.characterImage.load(newUrl)
+                    binding.characterDescription.text = newCharacter.description
+                    binding.faehigkeitenLabel.text = newCharacter.fähigkeiten.joinToString(", ")
+                    var size :Int = newCharacter.fähigkeiten.size
+                    try {
+                        binding.tvFaehigkeit1.text = newCharacter.fähigkeiten[0]
+                        // binding.tvFaehigkeit2.text = newCharacter.faehigkeiten[1]
+                        //binding.tvFaehigkeit3.text = newCharacter.faehigkeiten[2]
+
+                    }
+                    catch (e:Exception){}
+
+                }
+
+            }
         }
+
+
     }
 }

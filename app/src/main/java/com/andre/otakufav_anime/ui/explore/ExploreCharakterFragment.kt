@@ -32,10 +32,7 @@ class ExploreCharakterFragment : Fragment() {
 
         setUpSpinner()
 
-        binding.ivInfo.setOnClickListener{
-            val action = ExploreCharakterFragmentDirections.actionExploreCharakterFragmentToDetailExploreCharakterFragment()
-            findNavController().navigate(action)
-        }
+
 
         binding.ivHeartIconCharakter.setOnClickListener {
             viewModel.updateIsLikedAnime()
@@ -46,6 +43,11 @@ class ExploreCharakterFragment : Fragment() {
             val newUrl = Utils.extractImageUrl(newCharacter.image)
             binding.tvTitle.text = newCharacter.name
             binding.ivCharakter.load(newUrl)
+
+            binding.ivInfo.setOnClickListener{
+                val action = ExploreCharakterFragmentDirections.actionExploreCharakterFragmentToDetailExploreCharakterFragment(newCharacter.name)
+                findNavController().navigate(action)
+            }
         }
     }
 

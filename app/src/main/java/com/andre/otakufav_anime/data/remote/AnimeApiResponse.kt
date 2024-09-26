@@ -34,6 +34,6 @@ data class Character(
     val name: String = "",
     val description: String = "",
     val image: String = "",
-    val faehigkeiten: List<String> = listOf(),
+    val fähigkeiten: List<String> = listOf(),
 )
 

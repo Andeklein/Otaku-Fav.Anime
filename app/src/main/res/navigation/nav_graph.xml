@@ -52,7 +52,11 @@
         android:id="@+id/detailExploreCharakterFragment"
         android:name="com.andre.otakufav_anime.ui.detail.DetailExploreCharakterFragment"
         android:label="fragment_detail_explore_charakter"
-        tools:layout="@layout/fragment_detail_explore_charakter" />
+        tools:layout="@layout/fragment_detail_explore_charakter" >
+        <argument
+            android:name="name"
+            app:argType="string" />
+    </fragment>
     <activity
         android:id="@+id/mainActivity"
         android:name="com.andre.otakufav_anime.MainActivity"
