@@ -41,48 +41,18 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/one_piece_" />
+            tools:srcCompat="@drawable/vegeta" />
 
         <TextView
             android:id="@+id/tvAnimeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:text="One Piece"
+            android:text="Vegeta"
             android:textColor="#F20303"
             android:textSize="22sp"
             app:layout_constraintStart_toEndOf="@id/img_anime"
             app:layout_constraintTop_toTopOf="@id/img_anime" />
 
-        <TextView
-            android:id="@+id/tvAnimeGenre"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:text="Fighting-Shounen"
-            android:textColor="#F20303"
-            app:layout_constraintBottom_toBottomOf="@id/img_anime"
-            app:layout_constraintStart_toStartOf="@id/img_anime" />
-
-        <TextView
-            android:id="@+id/tvAnimeGenre2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Abenteuer"
-            android:textColor="#F20303"
-            app:layout_constraintStart_toEndOf="@+id/tvAnimeGenre"
-            app:layout_constraintTop_toTopOf="@+id/tvAnimeGenre" />
-
-        <TextView
-            android:id="@+id/tvAnimeGenre3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:text="Fantasy"
-            android:textColor="#F20303"
-            app:layout_constraintStart_toEndOf="@+id/tvAnimeGenre2"
-            app:layout_constraintTop_toTopOf="@+id/tvAnimeGenre2" />
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-    </com.google.android.material.card.MaterialCardView>
+</com.google.android.material.card.MaterialCardView>

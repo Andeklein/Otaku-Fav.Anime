@@ -1,9 +1,7 @@
 package com.example.animeapp.data.model
 
-import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.serialization.json.Json
-
 
 data class Anime(
 

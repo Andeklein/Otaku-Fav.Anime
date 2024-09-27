@@ -5,12 +5,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.andre.otakufav_anime.utils.Utils
-import com.andre.otakufav_anime.data.remote.Character
+import com.andre.otakufav_anime.data.remote.CharacterRoom
 import com.andre.otakufav_anime.databinding.ItemCharakterBinding
+import com.andre.otakufav_anime.viewModel.MainViewModel
 
 class CharakterAdapter(
 
-    private val charakterList: List<Character>
+    private val charakterList: List<CharacterRoom>,
+    private val viewModel: MainViewModel 
 
 ) : RecyclerView.Adapter<CharakterAdapter.CharakterViewHolder>() {
 
@@ -32,9 +34,10 @@ class CharakterAdapter(
 
             holder.binding.tvCharacterName.text = character.name
             holder.binding.tvCharacterDescription.text = character.description
-            holder.binding.tvCharacterFHigkeiten.text = character.fähigkeiten.joinToString(", ")
+            holder.binding.tvCharacterFHigkeiten.text = character.faehigkeiten.joinToString(", ")
             holder.binding.ivCharacterImage.load(newUrl)
 
+        viewModel.setCurrentCharacter(character)
     }
 
     override fun getItemCount(): Int {

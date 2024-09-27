@@ -8,6 +8,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.andre.otakufav_anime.data.remote.AnimeRepository
 import com.andre.otakufav_anime.data.remote.AnimeApiResponse
+import com.andre.otakufav_anime.data.remote.AnimeRoom
+import com.andre.otakufav_anime.data.remote.CharacterRoom
 import com.example.animeapp.data.model.Anime
 import kotlinx.coroutines.launch
 
@@ -23,17 +25,31 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     val anime: LiveData<List<Anime>>
         get() = _anime
 
-    private val _randomAnime = MutableLiveData<AnimeApiResponse>()
-    val randomAnime: LiveData<AnimeApiResponse>
+    private val _randomAnime = MutableLiveData<AnimeRoom>()
+    val randomAnime: LiveData<AnimeRoom>
         get() = _randomAnime
 
-    private val _isLikedAnime = MutableLiveData<List<AnimeApiResponse>>()
-    val isLikedAnime: LiveData<List<AnimeApiResponse>>
+    private val _isLikedAnime = MutableLiveData<List<AnimeRoom>>()
+    val isLikedAnime: LiveData<List<AnimeRoom>>
         get() = _isLikedAnime
 
-    private val _currentAnime = MutableLiveData<AnimeApiResponse>()
-    val currentAnime: LiveData<AnimeApiResponse>
+    private val _isLikedCharacter = MutableLiveData<List<CharacterRoom>>()
+    val isLikedCharacter: LiveData<List<CharacterRoom>>
+        get() = _isLikedCharacter
+
+    private val _currentAnime = MutableLiveData<AnimeRoom>()
+    val currentAnime: LiveData<AnimeRoom>
         get() = _currentAnime
+
+    private val _currentCharacter = MutableLiveData<CharacterRoom>()
+    val currentCharacter: LiveData<CharacterRoom>
+        get() = _currentCharacter
+
+    fun loadLikedCharacters() {
+        viewModelScope.launch {
+            _isLikedCharacter.value = animeRepository.getLikedCharacters()
+        }
+    }
 
     fun loadLikedAnimes() {
         viewModelScope.launch {
@@ -49,6 +65,8 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch {
             animeRepository.loadDataToDatabase()
             getRandomAnime()
+            animeRepository.loadCharactersToDatabase()
+            getRandomCharacter()
         }
     }
 
@@ -60,6 +78,14 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
+    fun getRandomCharacter(){
+        viewModelScope.launch {
+            val randomCharacter = animeRepository.getRandomCharacter()
+            Log.d("Anime","getRandomCharacter: $randomCharacter")
+            _currentCharacter.value = animeRepository.getRandomCharacter()
+        }
+    }
+
     fun updateIsLikedAnime() {
         _randomAnime.value?.isLiked = !_randomAnime.value?.isLiked!!
         viewModelScope.launch {
@@ -67,6 +93,15 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         }
         getRandomAnime()
     }
+
+    fun updateIsLikedCharacter() {
+        _currentCharacter.value?.isLikedCharacter = !_currentCharacter.value?.isLikedCharacter!!
+        viewModelScope.launch {
+            animeRepository.updateCharacter(_currentCharacter.value!!)
+        }
+        getRandomCharacter()
+    }
+
     fun trashAnime() {
         _randomAnime.value?.isTrashed = true
         getRandomAnime()
@@ -75,7 +110,10 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
         }
     }
 
-    fun setCurrentAnime(anime: AnimeApiResponse) {
+    fun setCurrentAnime(anime: AnimeRoom) {
         _currentAnime.value = anime
+    }
+    fun setCurrentCharacter(character: CharacterRoom) {
+        _currentCharacter.value = character
     }
 }

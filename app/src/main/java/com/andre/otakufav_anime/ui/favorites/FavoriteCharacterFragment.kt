@@ -1,22 +1,21 @@
 package com.andre.otakufav_anime.ui.favorites
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.andre.otakufav_anime.databinding.FragmentFavoriteCharacterBinding
+import com.andre.otakufav_anime.ui.adapter.CharakterAdapter
 import com.andre.otakufav_anime.viewModel.MainViewModel
-import com.andre.otakufav_anime.databinding.FragmentFavoriteBinding
-import com.andre.otakufav_anime.ui.adapter.AnimeAdapter
-import com.andre.otakufav_anime.ui.explore.ExploreAnimeFragmentDirections
 
-class FavoriteFragment : Fragment() {
+class FavoriteCharacterFragment : Fragment() {
 
-    private lateinit var binding: FragmentFavoriteBinding
+    private lateinit var binding: FragmentFavoriteCharacterBinding
     private val viewModel: MainViewModel by activityViewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,36 +26,36 @@ class FavoriteFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentFavoriteBinding.inflate(LayoutInflater.from(context), container, false)
+        binding = FragmentFavoriteCharacterBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.loadLikedAnimes()
+        viewModel.loadLikedCharacters()
 
-        viewModel.isLikedAnime.observe(viewLifecycleOwner) { likedAnimes ->
-
-            val adapter = AnimeAdapter(likedAnimes,viewModel)
-            binding.rvFavorite.adapter = adapter
+        viewModel.isLikedCharacter.observe(viewLifecycleOwner) { likedCharacters ->
+            val adapter = CharakterAdapter(likedCharacters,viewModel)
+            binding.rvFavoriteCharacter.adapter = adapter
         }
+
         setUpSpinner()
     }
     private fun setUpSpinner() {
 
         val filterData = mutableListOf(
-            "Anime",
-            "Character"
+            "Character" ,
+            "Anime"
         )
 
-        binding.spinner.adapter = ArrayAdapter(
+        binding.spinnerCharacter.adapter = ArrayAdapter(
             requireActivity(),
             android.R.layout.simple_spinner_dropdown_item,
             filterData
         )
 
-        binding.spinner.onItemSelectedListener =
+        binding.spinnerCharacter.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
                     parent: AdapterView<*>?,
@@ -66,9 +65,9 @@ class FavoriteFragment : Fragment() {
                 ) {
                     when (position) {
                         1 -> {
-                            // Navigate to FavoriteCharacterFragment if "Charakter" is selected
+                            // Navigate to FavoriteFragment if "Anime" is selected
                             val action =
-                                FavoriteFragmentDirections.actionFavoriteFragmentToFavoriteCharacterFragment()
+                                FavoriteCharacterFragmentDirections.actionFavoriteCharacterFragmentToFavoriteFragment()
                             findNavController().navigate(action)
                         }
                     }

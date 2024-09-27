@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.fragment.navArgs
 import coil.load
 import com.andre.otakufav_anime.viewModel.MainViewModel
 import com.andre.otakufav_anime.utils.Utils
@@ -36,7 +35,7 @@ class DetailAnimeFragment : Fragment() {
         viewModel.currentAnime.observe(viewLifecycleOwner) {
 
             val newUrl = Utils.extractImageUrl(it.banner)
-            val charakterAdapter = CharakterAdapter(it.characters)
+            val charakterAdapter = CharakterAdapter(it.characters, viewModel)
             Log.d("Anime","observe: $it")
             binding.tvAnimeName.text = it.anime
             binding.ivAnimeBanner.load(newUrl)

@@ -7,13 +7,13 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.andre.otakufav_anime.R
 import com.andre.otakufav_anime.utils.Utils
-import com.andre.otakufav_anime.data.remote.AnimeApiResponse
+import com.andre.otakufav_anime.data.remote.AnimeRoom
 import com.andre.otakufav_anime.databinding.FragmentItemFavoriteBinding
 import com.andre.otakufav_anime.viewModel.MainViewModel
 
 class AnimeAdapter(
 
-    private val animeList: List<AnimeApiResponse>,
+    private val animeList: List<AnimeRoom>,
     private val viewModel: MainViewModel
 
 ) : RecyclerView.Adapter<AnimeAdapter.AnimeViewHolder>() {

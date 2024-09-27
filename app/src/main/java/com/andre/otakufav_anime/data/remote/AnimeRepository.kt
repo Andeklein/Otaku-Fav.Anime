@@ -23,23 +23,46 @@ class AnimeRepository(
         return api.retrofitService.getAnimes()
     }
 
-    suspend fun getLikedAnime(): List<AnimeApiResponse> {
+    suspend fun getLikedAnime(): List<AnimeRoom> {
         return animeDao.getLikedAnime()
+    }
+
+    suspend fun getAllCharacters(): List<CharacterRoom> {
+        return animeDao.getAllCharacters()
+    }
+
+    suspend fun getRandomCharacter(): CharacterRoom? {
+        return animeDao.getRandomCharacter()
+    }
+
+   suspend fun getLikedCharacters(): List<CharacterRoom> {
+        return animeDao.getLikedCharacters()
     }
 
     suspend fun loadDataToDatabase() {
         if (animeDao.getAllAnime().isEmpty()) {
-            val anime = fetchAnimeFromApi()
-            animeDao.insertAllAnime(anime)
+            val animeList = fetchAnimeFromApi().map { it.toAnimeRoom() }
+            animeDao.insertAllAnime(animeList)
         }
     }
 
-    suspend fun getRandomAnime(): AnimeApiResponse? {
+    suspend fun loadCharactersToDatabase() {
+        if (animeDao.getAllCharacters().isEmpty()) {
+            val characterList = getAllCharacters().map { it }
+            animeDao.insertAllCharacters(characterList)
+        }
+    }
+
+    suspend fun getRandomAnime(): AnimeRoom? {
         return animeDao.getRandomAnime()
     }
 
-    suspend fun updateAnime(anime: AnimeApiResponse){
+    suspend fun updateAnime(anime: AnimeRoom){
         animeDao.updateAnime(anime)
+    }
+
+    suspend fun updateCharacter(character: CharacterRoom){
+        animeDao.updateCharacter(character)
     }
 
     suspend fun saveAnimeToDatabase() {

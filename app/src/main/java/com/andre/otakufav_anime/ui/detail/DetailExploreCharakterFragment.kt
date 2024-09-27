@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import coil.load
 import com.andre.otakufav_anime.R
@@ -47,6 +48,9 @@ class DetailExploreCharakterFragment : Fragment() {
                     binding.characterDescription.text = newCharacter.description
                 }
             }
+        }
+        binding.ivBack.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 }

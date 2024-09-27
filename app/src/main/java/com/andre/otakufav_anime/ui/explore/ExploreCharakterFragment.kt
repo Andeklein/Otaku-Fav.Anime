@@ -32,21 +32,27 @@ class ExploreCharakterFragment : Fragment() {
 
         setUpSpinner()
 
-
-
         binding.ivHeartIconCharakter.setOnClickListener {
-            viewModel.updateIsLikedAnime()
+            viewModel.updateIsLikedCharacter()
         }
 
-        viewModel.randomAnime.observe(viewLifecycleOwner) {
-            val newCharacter = it.characters.random()
-            val newUrl = Utils.extractImageUrl(newCharacter.image)
-            binding.tvTitle.text = newCharacter.name
-            binding.ivCharakter.load(newUrl)
 
-            binding.ivInfo.setOnClickListener{
-                val action = ExploreCharakterFragmentDirections.actionExploreCharakterFragmentToDetailExploreCharakterFragment(newCharacter.name)
-                findNavController().navigate(action)
+        viewModel.currentCharacter.observe(viewLifecycleOwner) { character ->
+            try {
+                val newCharacter = character
+                val newUrl = Utils.extractImageUrl(newCharacter.image)
+                binding.tvTitle.text = newCharacter.name
+                binding.ivCharakter.load(newUrl)
+
+                binding.ivInfo.setOnClickListener {
+                    val action =
+                        ExploreCharakterFragmentDirections.actionExploreCharakterFragmentToDetailExploreCharakterFragment(
+                            newCharacter.name
+                        )
+                    findNavController().navigate(action)
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
