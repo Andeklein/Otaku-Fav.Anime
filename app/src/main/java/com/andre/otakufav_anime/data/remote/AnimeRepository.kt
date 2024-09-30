@@ -3,6 +3,9 @@ package com.andre.otakufav_anime.data.remote
 import android.content.Context
 import com.andre.otakufav_anime.data.local.AnimeDao
 import com.andre.otakufav_anime.data.local.AnimeDatabase
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+import org.lighthousegames.logging.Log
 import org.lighthousegames.logging.logging
 
 class AnimeRepository(
@@ -27,30 +30,12 @@ class AnimeRepository(
         return animeDao.getLikedAnime()
     }
 
-    suspend fun getAllCharacters(): List<CharacterRoom> {
-        return animeDao.getAllCharacters()
-    }
-
     suspend fun getRandomCharacter(): CharacterRoom? {
         return animeDao.getRandomCharacter()
     }
 
    suspend fun getLikedCharacters(): List<CharacterRoom> {
         return animeDao.getLikedCharacters()
-    }
-
-    suspend fun loadDataToDatabase() {
-        if (animeDao.getAllAnime().isEmpty()) {
-            val animeList = fetchAnimeFromApi().map { it.toAnimeRoom() }
-            animeDao.insertAllAnime(animeList)
-        }
-    }
-
-    suspend fun loadCharactersToDatabase() {
-        if (animeDao.getAllCharacters().isEmpty()) {
-            val characterList = getAllCharacters().map { it }
-            animeDao.insertAllCharacters(characterList)
-        }
     }
 
     suspend fun getRandomAnime(): AnimeRoom? {
@@ -72,14 +57,37 @@ class AnimeRepository(
             val responseAnime = fetchAnimeFromApi()
 
             if (responseVersion == 1.0){
-                responseAnime.forEach {
-                    animeDao.getRandomAnime()
+                val animeList = responseAnime.map {
+                    AnimeRoom(
+                        anime = it.anime,
+                        info = it.info,
+                        genre = Json.encodeToString(it.genre) ,
+                        banner = it.banner,
+                        image = it.image,
+                        trailer = Json.encodeToString(it.trailer),
+                        characters = Json.encodeToString(it.characters)
+                    )
                 }
+                val charList = animeList.flatMap {anime ->
+                    anime.characterList.map {
+                        CharacterRoom(
+                            name = it.name,
+                            description = it.description,
+                            image = it.image,
+                            faehigkeiten = Json.encodeToString(it.faehigkeiten)
+                        )
+                    }
+                }
+                animeDao.insertAllAnime(animeList)
+                animeDao.insertAllCharacters(charList)
+
+                logging().info { " animeResult: ${animeList.size}" }
+                logging().info { " characterResult: ${charList.size}" }
             }
-            logging().info { " fetching anime: ${responseAnime.size}" }
         } catch (e: Exception) {
             logging().info { "Error fetching anime: ${e.message}" }
         }
     }
+
 }
 

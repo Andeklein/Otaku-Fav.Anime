@@ -8,15 +8,11 @@ import androidx.room.Update
 import com.andre.otakufav_anime.data.remote.AnimeRoom
 import com.andre.otakufav_anime.data.remote.CharacterRoom
 
-
 @Dao
 interface AnimeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllAnime(anime: List<AnimeRoom>)
-
-    @Query("SELECT * FROM table_anime")
-    suspend fun getAllAnime(): List<AnimeRoom>
 
     @Update
     suspend fun updateAnime(anime: AnimeRoom)
@@ -26,9 +22,6 @@ interface AnimeDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllCharacters(characters: List<CharacterRoom>)
-
-    @Query("SELECT * FROM table_character")
-    suspend fun getAllCharacters(): List<CharacterRoom>
 
     @Query("SELECT * FROM table_anime WHERE isFeatured = 0 ORDER BY RANDOM() LIMIT 1")
     suspend fun getRandomAnime(): AnimeRoom?
@@ -41,6 +34,5 @@ interface AnimeDao {
 
     @Query("SELECT * FROM table_character WHERE isFeaturedCharacter = 0 ORDER BY RANDOM() LIMIT 1")
     suspend fun getRandomCharacter(): CharacterRoom?
-
 
 }

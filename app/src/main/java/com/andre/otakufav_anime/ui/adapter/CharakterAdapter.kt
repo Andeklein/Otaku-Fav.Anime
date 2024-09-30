@@ -34,7 +34,7 @@ class CharakterAdapter(
 
             holder.binding.tvCharacterName.text = character.name
             holder.binding.tvCharacterDescription.text = character.description
-            holder.binding.tvCharacterFHigkeiten.text = character.faehigkeiten.joinToString(", ")
+            holder.binding.tvCharacterFHigkeiten.text = character.faehigkeiten
             holder.binding.ivCharacterImage.load(newUrl)
 
         viewModel.setCurrentCharacter(character)

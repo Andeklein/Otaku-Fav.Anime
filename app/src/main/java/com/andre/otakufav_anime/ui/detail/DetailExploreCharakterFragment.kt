@@ -39,9 +39,9 @@ class DetailExploreCharakterFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.randomAnime.observe(viewLifecycleOwner) {
-            for(i in 0..it.characters.size-1){
-                if (args.name == it.characters[i].name){
-                    val newCharacter = it.characters[i]
+            for(i in 0..<it.characterList.size){
+                if (args.name == it.characterList[i].name){
+                    val newCharacter = it.characterList[i]
                     val newUrl = Utils.extractImageUrl(newCharacter.image)
                     binding.characterName.text = newCharacter.name
                     binding.characterImage.load(newUrl)

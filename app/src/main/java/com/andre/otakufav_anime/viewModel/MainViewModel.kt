@@ -59,13 +59,15 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
 
     init {
         loadDataToDatabase()
+        viewModelScope.launch {
+            animeRepository.saveAnimeToDatabase()
+        }
     }
-
+// neu
     fun loadDataToDatabase() {
         viewModelScope.launch {
-            animeRepository.loadDataToDatabase()
             getRandomAnime()
-            animeRepository.loadCharactersToDatabase()
+         //   animeRepository.loadCharactersToDatabase()
             getRandomCharacter()
         }
     }

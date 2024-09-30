@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.andre.otakufav_anime.viewModel.MainViewModel
 import com.andre.otakufav_anime.databinding.FragmentWebViewBinding
+import org.lighthousegames.logging.logging
 
 class YouTubeWebViewFragment : Fragment() {
 
@@ -41,8 +42,13 @@ class YouTubeWebViewFragment : Fragment() {
         // Lade die YouTube-URL
         webView.loadUrl("https://www.youtube.com")
 
-        viewModel.randomAnime.observe(viewLifecycleOwner) {
-            binding.webView.loadUrl(it.trailer.deutsch)
+        try {
+            viewModel.randomAnime.observe(viewLifecycleOwner) {
+                binding.webView.loadUrl(it.trailerObject.deutsch)
+                logging().debug {"YouTube URL: ${it.trailer}"}
+              }
+        } catch (e: Exception) {
+            logging().debug {"Error loading YouTube video: ${e.message}"}
         }
     }
 }

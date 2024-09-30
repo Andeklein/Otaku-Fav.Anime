@@ -4,16 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import com.andre.otakufav_anime.data.model.Convert
 import com.andre.otakufav_anime.data.remote.AnimeRoom
 import com.andre.otakufav_anime.data.remote.CharacterRoom
 
 @Database(entities = [
     AnimeRoom::class, CharacterRoom::class
                      ], version = 1, exportSchema = false)
-
-@TypeConverters(Convert::class)
 
 abstract class AnimeDatabase : RoomDatabase() {
 

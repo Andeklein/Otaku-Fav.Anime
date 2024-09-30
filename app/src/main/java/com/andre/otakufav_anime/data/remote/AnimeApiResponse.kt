@@ -2,7 +2,14 @@ package com.andre.otakufav_anime.data.remote
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
+
+val json = Json {
+    ignoreUnknownKeys = true // Unbekannte Schlüssel ignorieren
+}
 
 @Serializable
 @Entity(tableName = "table_anime")
@@ -12,15 +19,24 @@ data class AnimeRoom(
     var id: Long = 0,
     val anime: String = "",
     val info: String = "",
-    val genre: List<String> = listOf(),
+    val genre: String = "",
     val banner: String = "",
     val image: String = "",
-    val trailer: Trailer = Trailer("", ""),
+    val trailer: String = "",
     var isLiked: Boolean = false,
     var isTrashed: Boolean = false,
     var isFeatured: Boolean = false,
-    val characters: List<CharacterRoom> = listOf()
-)
+    val characters: String = ""
+) {
+    val genreList: List<String>
+        get() = json.decodeFromString(genre)
+
+    val trailerObject: Trailer
+        get() = json.decodeFromString(trailer)
+
+    val characterList: List<CharacterRoom>
+        get() = json.decodeFromString(characters)
+}
 
 @Serializable
 @Entity(tableName = "table_character")
@@ -30,11 +46,14 @@ data class CharacterRoom(
     val name: String = "",
     val description: String = "",
     val image: String = "",
-    val faehigkeiten: List<String> = listOf(),
+    val faehigkeiten: String = "",
     var isLikedCharacter: Boolean = false,
     var isTrashedCharacter: Boolean = false,
     var isFeaturedCharacter: Boolean = false
-)
+) {
+    val faehigkeitenList: List<String>
+        get() = json.decodeFromString(faehigkeiten)
+}
 
 data class AnimeApiResponse(
 
@@ -50,20 +69,20 @@ data class AnimeApiResponse(
     val characters: List<Character> = listOf()
 ){
     fun toAnimeRoom(): AnimeRoom {
+        val x = json.encodeToString(characters)
         return AnimeRoom(
             anime = anime,
             info = info,
-            genre = genre,
+            genre = json.encodeToString(genre),
             banner = banner,
             image = image,
-            trailer = trailer,
+            trailer = json.encodeToString(trailer),
             isLiked = isLiked,
             isTrashed = isTrashed,
             isFeatured = isFeatured,
-            characters = characters.map { it.toCharacterRoom() }
+            characters = json.encodeToString( characters )
         )
     }
-
 }
 
 @Serializable
@@ -84,7 +103,7 @@ data class Character(
             name = name,
             description = description,
             image = image,
-            faehigkeiten = fähigkeiten,
+            faehigkeiten = json.encodeToString(fähigkeiten),
             isLikedCharacter = false,
             isTrashedCharacter = false,
             isFeaturedCharacter = false

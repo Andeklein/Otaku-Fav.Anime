@@ -35,14 +35,14 @@ class DetailAnimeFragment : Fragment() {
         viewModel.currentAnime.observe(viewLifecycleOwner) {
 
             val newUrl = Utils.extractImageUrl(it.banner)
-            val charakterAdapter = CharakterAdapter(it.characters, viewModel)
+            val charakterAdapter = CharakterAdapter(it.characterList, viewModel)
             Log.d("Anime","observe: $it")
             binding.tvAnimeName.text = it.anime
             binding.ivAnimeBanner.load(newUrl)
             binding.tvAnimeDescription.text = it.info
-            binding.tvGenre1.text = it.genre[0]
-            binding.tvGenre2.text = it.genre[1]
-            binding.tvGenre3.text = it.genre[2]
+            binding.tvGenre1.text = it.genreList[0]
+            binding.tvGenre2.text = it.genreList[1]
+            binding.tvGenre3.text = it.genreList[2]
             binding.rvCharactersList.adapter = charakterAdapter
 
         }
