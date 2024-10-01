@@ -1,6 +1,5 @@
 package com.andre.otakufav_anime.data.remote
 
-import com.example.animeapp.data.model.Anime
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
@@ -24,7 +23,7 @@ interface AnimeAPIService {
     suspend fun getVersion(): VersionResponse
 
     @GET("animeinfo/reponse.json")
-    suspend fun getAnimes(): List<AnimeApiResponse>
+    suspend fun getAnimes(): List<AnimeRoom>
 
 }
 

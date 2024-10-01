@@ -22,7 +22,7 @@ class AnimeRepository(
     }
 
     // Holt Animes von der API
-    private suspend fun fetchAnimeFromApi(): List<AnimeApiResponse> {
+    private suspend fun fetchAnimeFromApi(): List<AnimeRoom> {
         return api.retrofitService.getAnimes()
     }
 

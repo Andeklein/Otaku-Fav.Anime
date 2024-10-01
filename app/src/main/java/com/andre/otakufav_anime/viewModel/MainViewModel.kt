@@ -7,10 +7,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.andre.otakufav_anime.data.remote.AnimeRepository
-import com.andre.otakufav_anime.data.remote.AnimeApiResponse
 import com.andre.otakufav_anime.data.remote.AnimeRoom
 import com.andre.otakufav_anime.data.remote.CharacterRoom
-import com.example.animeapp.data.model.Anime
 import kotlinx.coroutines.launch
 
 class MainViewModel(application: Application): AndroidViewModel(application) {
@@ -21,8 +19,8 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     val apiVersion: LiveData<Int>
         get() = _apiVersion
 
-   private val _anime = MutableLiveData<List<Anime>>()
-    val anime: LiveData<List<Anime>>
+   private val _anime = MutableLiveData<List<AnimeRoom>>()
+    val anime: LiveData<List<AnimeRoom>>
         get() = _anime
 
     private val _randomAnime = MutableLiveData<AnimeRoom>()
@@ -67,7 +65,6 @@ class MainViewModel(application: Application): AndroidViewModel(application) {
     fun loadDataToDatabase() {
         viewModelScope.launch {
             getRandomAnime()
-         //   animeRepository.loadCharactersToDatabase()
             getRandomCharacter()
         }
     }

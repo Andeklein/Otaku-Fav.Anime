@@ -42,7 +42,8 @@ data class AnimeRoom(
 @Entity(tableName = "table_character")
 data class CharacterRoom(
 
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
+    var id: Long = 0,
     val name: String = "",
     val description: String = "",
     val image: String = "",
@@ -80,7 +81,7 @@ data class AnimeApiResponse(
             isLiked = isLiked,
             isTrashed = isTrashed,
             isFeatured = isFeatured,
-            characters = json.encodeToString( characters )
+            characters = json.encodeToString(characters)
         )
     }
 }

@@ -46,9 +46,7 @@ class ExploreCharakterFragment : Fragment() {
 
                 binding.ivInfo.setOnClickListener {
                     val action =
-                        ExploreCharakterFragmentDirections.actionExploreCharakterFragmentToDetailExploreCharakterFragment(
-                            newCharacter.name
-                        )
+                        ExploreCharakterFragmentDirections.actionExploreCharakterFragmentToDetailExploreCharakterFragment()
                     findNavController().navigate(action)
                 }
             } catch (e: Exception) {

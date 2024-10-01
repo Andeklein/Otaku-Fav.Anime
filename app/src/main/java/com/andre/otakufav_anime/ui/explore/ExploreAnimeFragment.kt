@@ -48,7 +48,8 @@ class ExploreAnimeFragment : Fragment() {
             viewModel.trashAnime()
         }
 
-        viewModel.randomAnime.observe(viewLifecycleOwner) { anime->
+        viewModel.randomAnime.observe(viewLifecycleOwner)
+         { anime->
             val newUrl = Utils.extractImageUrl(anime.image)
             Log.d("Anime", "observe: $anime")
             binding.tvTitle.text = anime.anime
@@ -60,8 +61,11 @@ class ExploreAnimeFragment : Fragment() {
                 findNavController().navigate(R.id.action_exploreAnimeFragment_to_detailAnimeFragment)
             }
         }
+
         setUpSpinner()
     }
+
+
 
     private fun setUpSpinner() {
 
