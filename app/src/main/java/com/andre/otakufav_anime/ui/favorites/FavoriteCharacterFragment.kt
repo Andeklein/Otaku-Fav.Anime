@@ -18,10 +18,6 @@ class FavoriteCharacterFragment : Fragment() {
     private lateinit var binding: FragmentFavoriteCharacterBinding
     private val viewModel: MainViewModel by activityViewModels()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,7 +35,6 @@ class FavoriteCharacterFragment : Fragment() {
             val adapter = CharakterAdapter(likedCharacters,viewModel)
             binding.rvFavoriteCharacter.adapter = adapter
         }
-
         setUpSpinner()
     }
     private fun setUpSpinner() {
@@ -65,7 +60,6 @@ class FavoriteCharacterFragment : Fragment() {
                 ) {
                     when (position) {
                         1 -> {
-                            // Navigate to FavoriteFragment if "Anime" is selected
                             val action =
                                 FavoriteCharacterFragmentDirections.actionFavoriteCharacterFragmentToFavoriteFragment()
                             findNavController().navigate(action)
@@ -74,7 +68,6 @@ class FavoriteCharacterFragment : Fragment() {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-                    // No action needed
                 }
             }
     }

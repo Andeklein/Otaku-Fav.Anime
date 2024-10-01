@@ -2,7 +2,6 @@ package com.andre.otakufav_anime.data.remote
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

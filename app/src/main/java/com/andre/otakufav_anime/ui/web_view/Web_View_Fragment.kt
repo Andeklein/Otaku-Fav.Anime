@@ -31,15 +31,11 @@ class YouTubeWebViewFragment : Fragment() {
 
         val webView = binding.webView
 
-        // WebView Einstellungen
         val webSettings: WebSettings = webView.settings
         webSettings.javaScriptEnabled = true
         webSettings.domStorageEnabled = true
 
-        // Verhindert das Öffnen von YouTube im Browser
         webView.webViewClient = WebViewClient()
-
-        // Lade die YouTube-URL
         webView.loadUrl("https://www.youtube.com")
 
         try {

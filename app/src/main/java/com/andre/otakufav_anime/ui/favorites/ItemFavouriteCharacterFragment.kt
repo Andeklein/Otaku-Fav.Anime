@@ -9,10 +9,6 @@ import com.andre.otakufav_anime.R
 
 class ItemFavouriteCharacterFragment : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

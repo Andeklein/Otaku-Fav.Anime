@@ -61,11 +61,7 @@ class ExploreAnimeFragment : Fragment() {
                 findNavController().navigate(R.id.action_exploreAnimeFragment_to_detailAnimeFragment)
             }
         }
-
-        setUpSpinner()
     }
-
-
 
     private fun setUpSpinner() {
 
@@ -90,7 +86,6 @@ class ExploreAnimeFragment : Fragment() {
                 ) {
                     when (position) {
                         1 -> {
-                            // Navigate to ExploreCharakterFragment if "Charakter" is selected
                             val action =
                                 ExploreAnimeFragmentDirections.actionExploreAnimeFragmentToExploreCharakterFragment()
                             findNavController().navigate(action)
@@ -99,7 +94,6 @@ class ExploreAnimeFragment : Fragment() {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-                    // No action needed
                 }
             }
     }

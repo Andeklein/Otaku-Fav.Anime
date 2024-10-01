@@ -5,7 +5,6 @@ import com.andre.otakufav_anime.data.local.AnimeDao
 import com.andre.otakufav_anime.data.local.AnimeDatabase
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.lighthousegames.logging.Log
 import org.lighthousegames.logging.logging
 
 class AnimeRepository(
@@ -21,7 +20,6 @@ class AnimeRepository(
         return api.retrofitService.getVersion().version
     }
 
-    // Holt Animes von der API
     private suspend fun fetchAnimeFromApi(): List<AnimeRoom> {
         return api.retrofitService.getAnimes()
     }

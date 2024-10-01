@@ -11,18 +11,16 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.andre.otakufav_anime.R
 import com.andre.otakufav_anime.databinding.FragmentAniGenresBinding
-import com.example.animeapp.A
-import com.example.animeapp.AAdapter
+import com.andre.otakufav_anime.data.model.Ani
+import com.andre.otakufav_anime.ui.adapter.AniAdapter
 import com.andre.otakufav_anime.viewModel.AGenresViewModel
 
 class AniGenresFragment : Fragment() {
 
     private var _binding: FragmentAniGenresBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel: AGenresViewModel by viewModels()
-
-    private lateinit var aAdapter: AAdapter
+    private lateinit var aniAdapter: AniAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,7 +31,6 @@ class AniGenresFragment : Fragment() {
         viewModel.genres.observe(viewLifecycleOwner) { genres ->
             setupSpinner(genres)
         }
-
         return binding.root
     }
 
@@ -83,7 +80,6 @@ class AniGenresFragment : Fragment() {
                 val selectedGenre = genres[position]
                 updateGenreDetails(selectedGenre,banners[selectedGenre] ?: R.drawable.action_genre)
             }
-
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
     }
@@ -92,15 +88,15 @@ class AniGenresFragment : Fragment() {
         binding.genreDescriptionTextView.text = viewModel.getGenreDescription(genre)
         binding.bannerImageView.setImageResource(banner)
 
-        val aList = viewModel.getAForGenre(genre)
-        setupARecyclerView(aList)
+        val aniList = viewModel.getAForGenre(genre)
+        setupARecyclerView(aniList)
     }
 
-    private fun setupARecyclerView(aList: List<A>) {
-        aAdapter = AAdapter(aList)
+    private fun setupARecyclerView(aniList: List<Ani>) {
+        aniAdapter = AniAdapter(aniList)
         binding.recyclerViewGenres.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = aAdapter
+            adapter = aniAdapter
         }
     }
 

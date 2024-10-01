@@ -1,13 +1,14 @@
-package com.example.animeapp
+package com.andre.otakufav_anime.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.andre.otakufav_anime.data.model.Ani
 import com.andre.otakufav_anime.databinding.AItemLayoutBinding
 
-class AAdapter(
-    private val aList: List<A>
-) : RecyclerView.Adapter<AAdapter.AViewHolder>() {
+class AniAdapter(
+    private val aniList: List<Ani>
+) : RecyclerView.Adapter<AniAdapter.AViewHolder>() {
 
     class AViewHolder(val binding: AItemLayoutBinding) : RecyclerView.ViewHolder(binding.root)
 
@@ -17,12 +18,12 @@ class AAdapter(
     }
 
     override fun onBindViewHolder(holder: AViewHolder, position: Int) {
-        val aItem = aList[position]
+        val aItem = aniList[position]
         holder.binding.aTextView.text = aItem.name
         holder.binding.aDescriptionTextView.text = aItem.description
     }
 
     override fun getItemCount(): Int {
-        return aList.size
+        return aniList.size
     }
 }

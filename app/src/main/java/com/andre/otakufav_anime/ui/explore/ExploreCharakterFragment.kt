@@ -36,7 +36,6 @@ class ExploreCharakterFragment : Fragment() {
             viewModel.updateIsLikedCharacter()
         }
 
-
         viewModel.currentCharacter.observe(viewLifecycleOwner) { character ->
             try {
                 val newCharacter = character
@@ -64,7 +63,6 @@ class ExploreCharakterFragment : Fragment() {
             filterData
         )
 
-        // Handle spinner selection
         binding.spinnerExploreCharkter.onItemSelectedListener =
             object : AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(
@@ -75,7 +73,6 @@ class ExploreCharakterFragment : Fragment() {
                 ) {
                     when (position) {
                         1 -> {
-                            // Navigate to ExploreAnimeFragment if "Anime" is selected
                             val action =
                                 ExploreCharakterFragmentDirections.actionExploreCharakterFragmentToExploreAnimeFragment()
                             findNavController().navigate(action)
@@ -84,7 +81,6 @@ class ExploreCharakterFragment : Fragment() {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-                    // No action needed
                 }
             }
     }

@@ -12,16 +12,11 @@ import androidx.navigation.fragment.findNavController
 import com.andre.otakufav_anime.viewModel.MainViewModel
 import com.andre.otakufav_anime.databinding.FragmentFavoriteBinding
 import com.andre.otakufav_anime.ui.adapter.AnimeAdapter
-import com.andre.otakufav_anime.ui.explore.ExploreAnimeFragmentDirections
 
 class FavoriteFragment : Fragment() {
 
     private lateinit var binding: FragmentFavoriteBinding
     private val viewModel: MainViewModel by activityViewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,7 +61,6 @@ class FavoriteFragment : Fragment() {
                 ) {
                     when (position) {
                         1 -> {
-                            // Navigate to FavoriteCharacterFragment if "Charakter" is selected
                             val action =
                                 FavoriteFragmentDirections.actionFavoriteFragmentToFavoriteCharacterFragment()
                             findNavController().navigate(action)
@@ -75,7 +69,6 @@ class FavoriteFragment : Fragment() {
                 }
 
                 override fun onNothingSelected(parent: AdapterView<*>?) {
-                    // No action needed
                 }
             }
     }
